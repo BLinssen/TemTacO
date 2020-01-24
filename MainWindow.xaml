@@ -1,11 +1,11 @@
-﻿<Window x:Class="TemOverlay.MainWindow"
+﻿<Window x:Class="TemTacO.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TemOverlay"
+        xmlns:local="clr-namespace:TemTacO"
         mc:Ignorable="d"
-        Title="TemOverlay" Topmost="True" ResizeMode="NoResize" Icon="pack://siteoforigin:,,,/Resources/TemTemLogo.png" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000">
+        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Icon="pack://siteoforigin:,,,/Resources/TemTemLogo.png" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000">
     <Window.Resources>
         <ControlTemplate x:Key="CustomButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
