@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemTacO", "TemTacO.csproj", "{286B9CCB-5308-4D1A-81A1-5A51ED342D19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{286B9CCB-5308-4D1A-81A1-5A51ED342D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286B9CCB-5308-4D1A-81A1-5A51ED342D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{286B9CCB-5308-4D1A-81A1-5A51ED342D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{286B9CCB-5308-4D1A-81A1-5A51ED342D19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97C79B8E-1A20-49B3-8E85-EB68E2FD02AB}
+	EndGlobalSection
+EndGlobal
