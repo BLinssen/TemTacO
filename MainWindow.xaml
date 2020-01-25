@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TemTacO"
         mc:Ignorable="d"
-        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Icon="pack://siteoforigin:,,,/Resources/TemTemLogo.png" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000">
+        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Icon="Resources/TemTacO.png" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000">
     <Window.Resources>
         <ControlTemplate x:Key="CustomButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -34,65 +34,177 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="LabelOutlineControl" TargetType="{x:Type Label}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </Window.Resources>
     <Grid Background="#00000000" Margin="0">
-        <StackPanel x:Name="TemLogoPanel" Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="TemLogo_MouseDown" MouseUp="TemLogo_MouseUp">
-            <Image x:Name="TemLogo" Height="60" Width="60" Source="pack://siteoforigin:,,,/Resources/TemTemLogo.png" RenderTransformOrigin="0.5,0.5" Margin="0" Panel.ZIndex="5"/>
+        <StackPanel x:Name="TemLogoPanel" Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="TemLogo_MouseDown" MouseUp="TemLogo_MouseUp" Margin="30,0,0,0">
+            <Image x:Name="TemLogo" Height="60" Width="60" Source="Resources/TemTacO.png" RenderTransformOrigin="1.85,0.667" Margin="0" Panel.ZIndex="10"/>
         </StackPanel>
-        <Grid x:Name="TemSettings" Margin="0,65,1326,738">
-            <Grid Margin="10,33,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
-                <Grid.Background>
-                    <ImageBrush ImageSource="pack://siteoforigin:,,,/TemBackground.png"/>
-                </Grid.Background>
-                <CheckBox x:Name="CheckBoxChartDetail" Content="" HorizontalAlignment="Left" Margin="122,5,0,0" VerticalAlignment="Top" Checked="CheckBoxChartDetail_Checked" Unchecked="CheckBoxChartDetail_Unchecked" RenderTransformOrigin="0.5,0.5" Width="16">
-                    <CheckBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.3" ScaleY="1.3"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </CheckBox.RenderTransform>
-                </CheckBox>
-                <Label Content="Detailed Chart" HorizontalAlignment="Left" VerticalAlignment="Center" Width="92" Background="#00000000" Padding="0" Margin="4,4,0,5" Foreground="#FFFFFEFE" FontSize="14"/>
+        <Grid x:Name="TemTacOverlay" Panel.ZIndex="-1">
+            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="6,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Right" Width="132">
+                <Label.Effect>
+                    <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
+                </Label.Effect>
+            </Label>
+            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="6,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="132" HorizontalContentAlignment="Right">
+                <Label.Effect>
+                    <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                </Label.Effect>
+            </Label>
+            <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="143,46,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="TypeMatchupNeutral" HorizontalAlignment="Left" Height="30" Margin="0,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Neutral.png"/>
+                <Image x:Name="TypeMatchupFire" HorizontalAlignment="Left" Height="30" Margin="30,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Fire.png"/>
+                <Image x:Name="TypeMatchupWater" HorizontalAlignment="Left" Height="30" Margin="60,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Water.png"/>
+                <Image x:Name="TypeMatchupNature" HorizontalAlignment="Left" Height="30" Margin="90,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Nature.png"/>
+                <Image x:Name="TypeMatchupElectric" HorizontalAlignment="Left" Height="30" Margin="120,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Electric.png"/>
+                <Image x:Name="TypeMatchupEarth" HorizontalAlignment="Left" Height="30" Margin="150,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Earth.png"/>
+                <Image x:Name="TypeMatchupMental" HorizontalAlignment="Left" Height="30" Margin="180,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Mental.png"/>
+                <Image x:Name="TypeMatchupWind" HorizontalAlignment="Left" Height="30" Margin="210,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Wind.png"/>
+                <Image x:Name="TypeMatchupDigital" HorizontalAlignment="Left" Height="30" Margin="240,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Digital.png"/>
+                <Image x:Name="TypeMatchupMelee" HorizontalAlignment="Left" Height="30" Margin="270,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Melee.png"/>
+                <Image x:Name="TypeMatchupCrystal" HorizontalAlignment="Left" Height="30" Margin="300,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Crystal.png"/>
+                <Image x:Name="TypeMatchupToxic" HorizontalAlignment="Left" Height="30" Margin="330,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Toxic.png"/>
             </Grid>
-            <Grid Margin="10,99,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
-                <Grid.Background>
-                    <ImageBrush ImageSource="pack://siteoforigin:,,,/TemBackground.png"/>
-                </Grid.Background>
-                <Slider x:Name="SliderScale" HorizontalAlignment="Left" Margin="79,2,0,0" VerticalAlignment="Top" Width="62" Height="21" ValueChanged="SliderScale_ValueChanged" Maximum="2" Value="1"/>
-                <Label Content="Chart Scale&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Background="#00000000" Padding="0" Margin="4,2,0,2" Foreground="#FFFFFEFE" FontSize="14"/>
+            <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="143,50,0,0" VerticalAlignment="Top" Width="360">
+                <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="LMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
             </Grid>
-            <Grid Margin="10,66,0,0" Height="28" VerticalAlignment="Top" Width="150" HorizontalAlignment="Left">
-                <Grid.Background>
-                    <ImageBrush ImageSource="pack://siteoforigin:,,,/TemBackground.png"/>
-                </Grid.Background>
-                <Label Content="Logo Size" HorizontalAlignment="Left" VerticalAlignment="Center" Width="69" Background="#00000000" Padding="0" Margin="4,3,0,1" Foreground="#FFFFFEFE" FontSize="14" Height="21"/>
-                <Button x:Name="BtnLogoSizeSmaller" Content="&lt;" HorizontalAlignment="Left" Margin="78,2,0,0" VerticalAlignment="Top" Width="13" Height="20" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="White" Click="BtnLogoSizeSmaller_Click" Template="{DynamicResource CustomButtonControlTemplate}"/>
-                <Label x:Name="LogoSizeVal" Content="Medium" HorizontalAlignment="Left" VerticalAlignment="Center" Width="38" Background="#00000000" Padding="0" Margin="92,5,21,3" Foreground="#FFFFFEFE" Height="17" FontSize="10"/>
-                <Button x:Name="BtnLogoSizeLarger" Content="&gt;" HorizontalAlignment="Left" Margin="131,2,0,0" VerticalAlignment="Top" Width="13" Height="20" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="BtnLogoSizeLarger_Click" Template="{DynamicResource CustomButtonControlTemplate}"/>
+            <Grid x:Name="RightMatchup" HorizontalAlignment="Left" Height="30" Margin="143,84,0,0" VerticalAlignment="Top" Width="360">
+                <Label x:Name="RMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
             </Grid>
-            <Grid VerticalAlignment="Top" Margin="10,0,0,0" Height="28" Width="150" HorizontalAlignment="Left">
-                <Grid.Background>
-                    <ImageBrush ImageSource="pack://siteoforigin:,,,/TemBackground.png"/>
-                </Grid.Background>
-                <CheckBox x:Name="CheckBoxDisplayOverlay" Content="" HorizontalAlignment="Left" Margin="121,3,0,0" VerticalAlignment="Top" Checked="CheckBoxDisplayOverlay_Checked" Unchecked="CheckBoxDisplayOverlay_Unchecked" Height="15" Width="16" RenderTransformOrigin="0.5,0.5">
-                    <CheckBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.3" ScaleY="1.3"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform X="1" Y="1"/>
-                        </TransformGroup>
-                    </CheckBox.RenderTransform>
-                </CheckBox>
-                <Label Content="Display Chart" HorizontalAlignment="Left" VerticalAlignment="Center" Width="88" Background="#00000000" Padding="0" Margin="4,2,0,2" Foreground="#FFFFFEFE" FontSize="14"/>
-
-                <Button x:Name="BtnMinimize" Content="-" HorizontalAlignment="Left" Margin="54,-20,0,0" VerticalAlignment="Top" Width="20" Template="{DynamicResource CustomButtonControlTemplate}" Click="BtnMinimize_Click"/>
-                <Button x:Name="BtnClose" Content="x" HorizontalAlignment="Left" Margin="84,-20,0,0" VerticalAlignment="Top" Width="20" Template="{DynamicResource CustomButtonControlTemplate}" Click="BtnClose_Click"/>
-            </Grid>
+            <Image HorizontalAlignment="Left" Height="119" Margin="6,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6"/>
+            <!--<Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>-->
+            <Button x:Name="BtnTemQuit" Content="" HorizontalAlignment="Left" Margin="108,17,0,0" VerticalAlignment="Top" Width="30" Click="BtnTemQuit_Click" Height="30" Template="{DynamicResource CustomButtonControlTemplate}" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/TemQuit.png"/>
+                </Button.Background>
+            </Button>
         </Grid>
-        <Image x:Name="TemTypeImageLarge" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="450" Source="pack://siteoforigin:,,,/Resources/TemTypes-Large.png" Margin="40,10,-500,-500" Panel.ZIndex="-5" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed"/>
-        <Image x:Name="TemTypeImageSmall" HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="450" Source="pack://siteoforigin:,,,/Resources/TemTypes-Small.png" Margin="40,10,-500,-500" Panel.ZIndex="-5" Visibility="Collapsed"/>
     </Grid>
 </Window>
