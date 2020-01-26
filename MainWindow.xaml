@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TemTacO"
         mc:Ignorable="d"
-        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Icon="Resources/TemTacO.png" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000">
+        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000" Icon="Resources/TemTacO.png" WindowState="Maximized">
     <Window.Resources>
         <ControlTemplate x:Key="CustomButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -46,21 +46,18 @@
         </ControlTemplate>
     </Window.Resources>
     <Grid Background="#00000000" Margin="0">
-        <StackPanel x:Name="TemLogoPanel" Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" MouseDown="TemLogo_MouseDown" MouseUp="TemLogo_MouseUp" Margin="30,0,0,0">
-            <Image x:Name="TemLogo" Height="60" Width="60" Source="Resources/TemTacO.png" RenderTransformOrigin="1.85,0.667" Margin="0" Panel.ZIndex="10"/>
-        </StackPanel>
         <Grid x:Name="TemTacOverlay" Panel.ZIndex="-1">
-            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="6,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Right" Width="132">
+            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="-13,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Right" Width="132">
                 <Label.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </Label.Effect>
             </Label>
-            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="6,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="132" HorizontalContentAlignment="Right">
+            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="-13,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="132" HorizontalContentAlignment="Right">
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                 </Label.Effect>
             </Label>
-            <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="143,46,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
+            <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="124,46,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
                 <Image x:Name="TypeMatchupNeutral" HorizontalAlignment="Left" Height="30" Margin="0,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Neutral.png"/>
                 <Image x:Name="TypeMatchupFire" HorizontalAlignment="Left" Height="30" Margin="30,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Fire.png"/>
                 <Image x:Name="TypeMatchupWater" HorizontalAlignment="Left" Height="30" Margin="60,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Water.png"/>
@@ -74,7 +71,7 @@
                 <Image x:Name="TypeMatchupCrystal" HorizontalAlignment="Left" Height="30" Margin="300,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Crystal.png"/>
                 <Image x:Name="TypeMatchupToxic" HorizontalAlignment="Left" Height="30" Margin="330,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Toxic.png"/>
             </Grid>
-            <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="143,50,0,0" VerticalAlignment="Top" Width="360">
+            <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="124,50,0,0" VerticalAlignment="Top" Width="360">
                 <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
@@ -136,7 +133,7 @@
                     </Label.Effect>
                 </Label>
             </Grid>
-            <Grid x:Name="RightMatchup" HorizontalAlignment="Left" Height="30" Margin="143,84,0,0" VerticalAlignment="Top" Width="360">
+            <Grid x:Name="RightMatchup" HorizontalAlignment="Left" Height="30" Margin="124,84,0,0" VerticalAlignment="Top" Width="360">
                 <Label x:Name="RMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
@@ -198,13 +195,8 @@
                     </Label.Effect>
                 </Label>
             </Grid>
-            <Image HorizontalAlignment="Left" Height="119" Margin="6,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6"/>
-            <!--<Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>-->
-            <Button x:Name="BtnTemQuit" Content="" HorizontalAlignment="Left" Margin="108,17,0,0" VerticalAlignment="Top" Width="30" Click="BtnTemQuit_Click" Height="30" Template="{DynamicResource CustomButtonControlTemplate}" BorderBrush="{x:Null}">
-                <Button.Background>
-                    <ImageBrush ImageSource="Resources/TemQuit.png"/>
-                </Button.Background>
-            </Button>
+            <Image HorizontalAlignment="Left" Height="119" Margin="-13,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6" Opacity="0.995"/>
         </Grid>
+        <Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>
     </Grid>
 </Window>

@@ -38,7 +38,7 @@ namespace TemTacO
             DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             //Run the function every 3 seconds.
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 3);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
 
         }
@@ -137,15 +137,20 @@ namespace TemTacO
             {
                 RightMatchup.Visibility = Visibility.Collapsed;
             }
+
+            TemTacOverlay.Visibility = (LeftMatchup.Visibility == Visibility.Collapsed && RightMatchup.Visibility == Visibility.Collapsed) ? Visibility.Collapsed : Visibility.Visible;
+
         }
 
         public string ImageCorrelation(Bitmap image)
         {
-            List<float> similarities = new List<float>();
+            List<float> similaritiesWhite = new List<float>();
+            List<float> similaritiesBlack = new List<float>();
             string[] FilePaths = Directory.GetFiles(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Dataset"));
             foreach (string filePath in FilePaths)
             {
-                float similar = 0;
+                float similarWhite = 0;
+                float similarBlack = 0;
                 Bitmap datasetImage = new Bitmap(filePath);
                 for (int y = 0; y < image.Height; y++)
                 {
@@ -157,41 +162,33 @@ namespace TemTacO
                         //If there is a white pixel in the same position on both images add a point of similarity
                         if((pixel1.R == 255 && pixel1.G == 255 && pixel1.B == 255 && pixel1.A == 255) && (pixel2.R == 255 && pixel2.G == 255 && pixel2.B == 255 && pixel2.A == 255))
                         {
-                            similar += 1;
+                            similarWhite += 1;                            
+                        }
+                        if ((pixel1.R < 35 && pixel1.G < 35 && pixel1.B < 35 && pixel1.A == 255) && (pixel2.R < 35 && pixel2.G < 35 && pixel2.B < 35 && pixel2.A == 255) && y < 26)
+                        {
+                            similarBlack += 1;
                         }
                     }
                 }
-                similarities.Add(similar);
+                similaritiesWhite.Add(similarWhite);
+                similaritiesBlack.Add(similarBlack);
             }
             //If there are less than 30 pixels equal we assume there is no Tem found.
-            if (similarities.Max() < 30)
+            if (similaritiesWhite.Max() < 30 && similaritiesBlack.Max() < 30)
                 return "";
-            else //Return Tem Name
-                return Path.GetFileNameWithoutExtension(FilePaths[similarities.IndexOf(similarities.Max())]);
-        }
-
-        private void ToggleWindow()
-        {
-            TemTacOverlay.Visibility = TemTacOverlay.Visibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
+            else
+            {
+                int WhiteIndex = similaritiesWhite.IndexOf(similaritiesWhite.Max());
+                int BlackIndex = similaritiesBlack.IndexOf(similaritiesBlack.Max());
+                if (WhiteIndex == BlackIndex)
+                {
+                    return Path.GetFileNameWithoutExtension(FilePaths[WhiteIndex]);
+                }
+                else
+                    return "";
+            }
         }
        
-        private void TemLogo_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ClickTime = DateTime.Now;
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-        }
-
-        private void TemLogo_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (DateTime.Now.Subtract(ClickTime).TotalSeconds < 0.15)
-            {
-                ToggleWindow();
-            }
-        }
-
         //This method is used by the 'commented' button. Used for gathering dataset.
         private void BtnEnemyTemSave_Click(object sender, RoutedEventArgs e)
         {
@@ -222,11 +219,6 @@ namespace TemTacO
             int index = TemNames.IndexOf(TemName);
             TemTem TemInfo = TemTems[index];
             return TemInfo;
-        }
-
-        private void BtnTemQuit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
