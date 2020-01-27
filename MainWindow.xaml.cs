@@ -19,7 +19,6 @@ namespace TemTacO
     public partial class MainWindow : Window
     {
         //Global Variables
-        DateTime ClickTime = new DateTime();
         List<TemTem> TemTems = new List<TemTem>();
         List<string> TemNames = new List<string>();
         public MainWindow()
@@ -42,7 +41,7 @@ namespace TemTacO
             dispatcherTimer.Start();
 
         }
-    
+
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             //Scan Screen for Tems
@@ -72,11 +71,15 @@ namespace TemTacO
                 memoryImage.Save(fileName);
             }
 
+            string TempTemScan = ImageCorrelation(memoryImage).ToString();
             //Set left Tem label text
-            EnemyTemLeft.Content = ImageCorrelation(memoryImage).ToString();
+            if (!ScanForMenu() || (EnemyTemLeft.Content.ToString() != TempTemScan && TempTemScan != ""))
+            {
+                EnemyTemLeft.Content = TempTemScan;
+            }
 
             //If we found a tem update the table
-            if(EnemyTemLeft.Content.ToString() != "")
+            if (EnemyTemLeft.Content.ToString() != "")
             {
                 TemTem TemLeft = GetMatchup(EnemyTemLeft.Content.ToString());
 
@@ -110,9 +113,13 @@ namespace TemTacO
                     DateTime.Now.ToString("(dd_MMMM_hh_mm_ss_tt)") + "R.png");
                 memoryImage.Save(fileName);
             }
-                
-            //Set right Tem label text
-            EnemyTemRight.Content = ImageCorrelation(memoryImage).ToString();
+
+            TempTemScan = ImageCorrelation(memoryImage).ToString();
+            //Set left Tem label text
+            if (!ScanForMenu() || (EnemyTemLeft.Content.ToString() != TempTemScan && TempTemScan != ""))
+            {
+                EnemyTemRight.Content = TempTemScan;
+            };
 
             //If we found a Tem update the table
             if (EnemyTemRight.Content.ToString() != "")
@@ -139,7 +146,30 @@ namespace TemTacO
             }
 
             TemTacOverlay.Visibility = (LeftMatchup.Visibility == Visibility.Collapsed && RightMatchup.Visibility == Visibility.Collapsed) ? Visibility.Collapsed : Visibility.Visible;
+        }
 
+        private bool ScanForMenu()
+        {
+            Bitmap memoryImage;
+            memoryImage = new Bitmap(454, 3);
+            System.Drawing.Size s = new System.Drawing.Size(454, 3);
+            Graphics memoryGraphics = Graphics.FromImage(memoryImage);
+
+            //Scan for menu
+            memoryGraphics.CopyFromScreen(471, 298, 0, 0, s);
+
+            for (int y = 0; y < memoryImage.Height; y++)
+            {
+                for (int x = 0; x < memoryImage.Width; x++)
+                {
+                    System.Drawing.Color pixel = memoryImage.GetPixel(x, y);
+                    if (pixel.R != 30 || pixel.G != 31 || pixel.B != 30 || pixel.A != 255)
+                    {
+                        return false;
+                    }
+                }
+            }            
+            return true;
         }
 
         public string ImageCorrelation(Bitmap image)
@@ -174,7 +204,7 @@ namespace TemTacO
                 similaritiesBlack.Add(similarBlack);
             }
             //If there are less than 30 pixels equal we assume there is no Tem found.
-            if (similaritiesWhite.Max() < 30 && similaritiesBlack.Max() < 30)
+            if (similaritiesWhite.Max() < 30 || similaritiesBlack.Max() < 30)
                 return "";
             else
             {
