@@ -197,6 +197,6 @@
             </Grid>
             <Image HorizontalAlignment="Left" Height="119" Margin="-13,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6" Opacity="0.995"/>
         </Grid>
-        <Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>
+        <!--<Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>-->
     </Grid>
 </Window>
