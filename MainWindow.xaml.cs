@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Threading;
@@ -95,6 +96,7 @@ namespace TemTacO
                 LMMelee.Content = TemLeft.TypeMelee.ToString().TrimStart(new Char[] { '0' });
                 LMCrystal.Content = TemLeft.TypeCrystal.ToString().TrimStart(new Char[] { '0' });
                 LMToxic.Content = TemLeft.TypeToxic.ToString().TrimStart(new Char[] { '0' });
+                AddColor(LeftMatchup.Children);
                 LeftMatchup.Visibility = Visibility.Visible;
             }
             else
@@ -138,6 +140,7 @@ namespace TemTacO
                 RMMelee.Content = TemRight.TypeMelee.ToString().TrimStart(new Char[] { '0' });
                 RMCrystal.Content = TemRight.TypeCrystal.ToString().TrimStart(new Char[] { '0' });
                 RMToxic.Content = TemRight.TypeToxic.ToString().TrimStart(new Char[] { '0' });
+                AddColor(RightMatchup.Children);
                 RightMatchup.Visibility = Visibility.Visible;
             }
             else
@@ -146,6 +149,25 @@ namespace TemTacO
             }
 
             TemTacOverlay.Visibility = (LeftMatchup.Visibility == Visibility.Collapsed && RightMatchup.Visibility == Visibility.Collapsed) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void AddColor(System.Windows.Controls.UIElementCollection collection)
+        {
+            foreach (Label label in collection)
+            {
+                if (label.Content.ToString() != "" && double.Parse(label.Content.ToString()) < 1)
+                {
+                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 211, 111, 106));
+                }
+                else if (label.Content.ToString() != "" && double.Parse(label.Content.ToString()) > 1)
+                {
+                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 169, 215, 157));
+                }
+                else
+                {
+                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
+                }
+            }
         }
 
         private bool ScanForMenu()

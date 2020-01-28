@@ -72,62 +72,62 @@
                 <Image x:Name="TypeMatchupToxic" HorizontalAlignment="Left" Height="30" Margin="330,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Toxic.png"/>
             </Grid>
             <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="124,50,0,0" VerticalAlignment="Top" Width="360">
-                <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False">
+                <Label x:Name="LMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
