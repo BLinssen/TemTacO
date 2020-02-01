@@ -1,90 +1,162 @@
-﻿No,Temtem,Type1,Type2,Trait,Neutral,Fire,Water,Nature,Electric,Earth,Mental,Wind,Digital,Melee,Crystal,Toxic
-2,Oree,Digital,None,Dunno,0,0,2,0,2,0,0,0,2,0,0,0.5
-3,Zaobian,Digital,None,Dunno,0,0,2,0,2,0,0,0,2,0,0,0.5
-7,Platypet,Water,Toxic,Dunno,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
-8,Platox,Water,Toxic,Dunno,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
-9,Platimous,Water,Toxic,Dunno,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
-10,Swali,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-11,Loali,Nature,Wind,Dunno,0,2,0.5,0.5,0,0.25,0,0.5,0,0,0,2
-12,Tateru,Neutral,None,Dunno,0,0,0,0,0,0,2,0,0,0,0,0
-16,Paharo,Wind,None,Hover,0,0,0,0,2,0.25,0,0.5,0,0,0,0
-16,Paharo,Wind,None,Friendship,0,0,0,0,2,0.5,0,0.5,0,0,0,0
-17,Paharac,Wind,None,Dunno,0,0,0,0,2,0.5,0,0.5,0,0,0,0
-18,Granpah,Wind,None,Dunno,0,0,0,0,2,0.5,0,0.5,0,0,0,0
-19,Ampling,Electric,None,Dunno,0,0,0,0,0.5,2,0,0.5,0,0,2,0
-20,Amphatyr,Electric,Nature,Dunno,0,2,0.5,0.5,0.25,0,0,0.5,0,0,2,2
-21,Bunbun,Earth,Crystal,Dunno,0,0,2,2,0.25,2,0.5,0,0,4,0.5,0.25
-22,Mudrid,Earth,Crystal,Dunno,0,0,2,2,0.25,2,0.5,0,0,4,0.5,0.25
-23,Hidody,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-24,Taifu,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-25,Fomu,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-26,Wiplump,Water,Wind,Dunno,0,0.5,0.5,2,4,0.25,0,0.5,0,0,0,2
-27,Skail,Neutral,None,Dunno,0,0,0,0,0,0,2,0,0,0,0,0
-28,Skunch,Neutral,Melee,Dunno,0,0,0,0,0,0,4,0,2,0.5,0,0
-32,Houchic,Mental,None,Dunno,0.5,0,0,0,2,0,0,0,2,0.5,2,0
-33,Tental,Mental,None,Dunno,0.5,0,0,0,2,0,0,0,2,0.5,2,0
-35,Orphyll,Nature,Toxic,Dunno,0,2,0.25,0.25,0.5,0.5,0,2,0,0,0,0
-36,Nidrasil,Nature,Toxic,Dunno,0,2,0.25,0.25,0.5,0.5,0,2,0,0,0,0
-37,Banapi,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-38,Capyre,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-39,Lapinite,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-40,Azuroc,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-41,Zenoreth,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-44,Bigu,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-45,Babawa,Nature,Water,Dunno,0,0,0.25,0,0,0.25,0,0,0,0,0,4
-48,Kaku,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-49,Saku,Nature,Wind,Dunno,0,2,0.5,0.5,0,0.25,0,0.5,0,0,0,2
-50,Valash,Neutral,Crystal,Dunno,0,2,0,0,0.5,2,0,0,0,2,0,0.5
-53,Barnshe,Mental,Wind,Dunno,0.5,0,0,0,4,0.5,0,0.5,2,0.5,2,0
-54,Gyalis,Crystal,Melee,Dunno,0,2,0,0,0.5,2,0,0,2,0,0,0.5
-55,Occlura,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-56,Myx,Crystal,Mental,Dunno,0.5,2,0,0,0,2,0.5,0,2,0,2,0.5
-57,Raiber,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-58,Raize,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-59,Raican,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-60,Pewki,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-61,Piraniant,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-69,Saipat,Water,Melee,Dunno,0,0.5,0.5,2,2,0.5,2,0,2,0.5,0,2
-72,Crystle,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-73,Sherald,Crystal,None,Dunno,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
-79,Hocus,Mental,None,Dunno,0.5,0,0,0,2,0,0,0,2,0.5,2,0
-80,Pocus,Mental,None,Dunno,0.5,0,0,0,2,0,0,0,2,0.5,2,0
-82,Sparzy,Electric,None,Dunno,0,0,0,0,0.5,2,0,0.5,0,0,2,0
-84,Mushi,Toxic,None,Dunno,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
-85,Mushook,Toxic,Melee,Dunno,0,0,0.5,0.5,0,0,2,2,2,0.5,0,0.5
-86,Magmis,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-87,Mastione,Fire,None,Dunno,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
-88,Umishi,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-89,Ukama,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-91,Raignet,Unknown,None,Dunno,0,0,0,0,0,0,0,0,0,0,0,0
-92,Smazee,Melee,None,Dunno,0,0,0,0,0,0,2,0,2,0.5,0,0
-93,Baboong,Melee,None,Dunno,0,0,0,0,0,0,2,0,2,0.5,0,0
-95,Zizare,Earth,None,Dunno,0,0.5,2,2,0.5,0,0,0,0,2,0.5,0.5
-102,Spriole,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-103,Deendre,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-104,Cerneaf,Nature,None,Dunno,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
-105,Toxolotl,Toxic,None,Dunno,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
-106,Noxolotl,Toxic,None,Dunno,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
-107,Blooze,Toxic,None,Dunno,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
-108,Goolder,Toxic,None,Dunno,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
-109,Zephyruff,Toxic,Wind,Dunno,0,0,0.5,0.5,2,0.5,0,0,0,0,0,0.5
-110,Volarend,Toxic,Wind,Dunno,0,0,0.5,0.5,2,0.5,0,0,0,0,0,0.5
-113,Ganki,Electric,Wind,Botanophobia,0,0,0,2,0,0,0,0.25,0,0,2,0
-113,Ganki,Electric,Wind,Cold-Natured,0,0,0,0,0,0,0,0.25,0,0,2,0
-114,Gazuma,Electric,Wind,Dunno,0,0,0,0,0,0,0,0.25,0,0,2,0
-115,Oceara,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-122,Shuine,Crystal,Water,Dunno,0,0,0.5,2,0,0,0.5,0,0,2,0,0
-123,Nessla,Water,Electric,Dunno,0,0.5,0.5,2,0,0,0,0.5,0,0,2,2
-124,Valiar,Mental,None,Dunno,0.5,0,0,0,2,0,0,0,2,0.5,2,0
-127,Kalazu,Water,None,Dunno,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-128,Kalabyss,Water,Toxic,Dunno,0,0.5,0.25,2,2,0.5,0,2,0,0,0,0
-129,Adoroboros,Toxic,Mental,Dunno,0.5,0,0.5,0.5,2,0,0,2,2,0.5,2,0.5
-130,Tuwai,Wind,None,Dunno,0,0,0,0,2,0.5,0,0.5,0,0,0,0
-133,Tuvine,Wind,Crystal,Dunno,0,2,0,0,0,0,0.5,0.5,0,2,0,0.5
-137,Kinu,Nature,Mental,Dunno,0.5,2,0.5,0.5,0,0.5,0,0,2,0.5,2,2
-138,Vulvir,Fire,Earth,Dunno,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
-139,Vulor,Fire,Earth,Dunno,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
-140,Vulcrane,Fire,Earth,Dunno,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
-141,Pigepic,Wind,None,Dunno,0,0,0,0,2,0.5,0,0.5,0,0,0,0
-161,Anahir,Crystal,Fire,Trauma,0,0,2,0.5,0.5,4,0.5,0,0,2,0.5,0.5
-161,Anahir,Crystal,Fire,Flawed Crystal,0,0,2,0.5,0.75,4,0.75,0,0,2,0.5,0.75
+﻿No,Temtem,Type1,Type2,Trait1,Neutral,Fire,Water,Nature,Electric,Earth,Mental,Wind,Digital,Melee,Crystal,Toxic
+1,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+2,Oree,Digital,None,Unknown,0,0,2,0,2,0,0,0,2,0,0,0.5
+3,Zaobian,Digital,None,Unknown,0,0,2,0,2,0,0,0,2,0,0,0.5
+4,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+5,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+6,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+7,Platypet,Water,Toxic,Toxic Affinity:Amphibian,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
+8,Platox,Water,Toxic,Resistant:Resilient,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
+9,Platimous,Water,Toxic,Zen:Determined,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
+10,Swali,Nature,None,Shared Pain:Mithridatism,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+11,Loali,Nature,Wind,Botanist:Toxic Farewell,0,2,0.5,0.5,0,0.25,0,0.5,0,0,0,2
+12,Tateru,Neutral,None,Soft Touch:Resilient,0,0,0,0,0,0,2,0,0,0,0,0
+13,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+14,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+15,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+16,Paharo,Wind,None,Hover:Friendship,0,0,0,0,2,0.5,0,0.5,0,0,0,0
+17,Paharac,Wind,None,Caffeinated:Camaraderie,0,0,0,0,2,0.5,0,0.5,0,0,0,0
+18,Granpah,Wind,None,Last Rush:Bully,0,0,0,0,2,0.5,0,0.5,0,0,0,0
+19,Ampling,Electric,None,Unknown,0,0,0,0,0.5,2,0,0.5,0,0,2,0
+20,Amphatyr,Electric,Nature,Unknown,0,2,0.5,0.5,0.25,0,0,0.5,0,0,2,2
+21,Bunbun,Earth,Crystal,Caffeinated:Camaraderie:Resilient,0,0,2,2,0.25,2,0.5,0,0,4,0.5,0.25
+22,Mudrid,Earth,Crystal,Receptive:Resistant,0,0,2,2,0.25,2,0.5,0,0,4,0.5,0.25
+23,Hidody,Nature,None,Electric Synthesize:Botanist,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+24,Taifu,Nature,None,Toxic Farewell:Resilient,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+25,Fomu,Water,None,Amphibian:Hydrologist,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+26,Wiplump,Water,Wind,Plethoric:Patient,0,0.5,0.5,2,4,0.25,0,0.5,0,0,0,2
+27,Skail,Neutral,None,Furor:Scavenger,0,0,0,0,0,0,2,0,0,0,0,0
+28,Skunch,Neutral,Melee,Brawny:Bully,0,0,0,0,0,0,4,0,2,0.5,0,0
+29,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+30,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+31,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+32,Houchic,Mental,None,Mental Alliance:Soft Touch,0.5,0,0,0,2,0,0,0,2,0.5,2,0
+33,Tental,Mental,None,Water Affinity:Avenger,0.5,0,0,0,2,0,0,0,2,0.5,2,0
+34,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+35,Orphyll,Nature,Toxic,Toxic Affinity:Apothecary,0,2,0.25,0.25,0.5,0.5,0,2,0,0,0,0
+36,Nidrasil,Nature,Toxic,Toxic Farewell:Tri-Apothecary,0,2,0.25,0.25,0.5,0.5,0,2,0,0,0,0
+37,Banapi,Fire,None,Pyromaniac:Settling,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+38,Capyre,Fire,None,Last Rush:Resilient,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+39,Lapinite,Crystal,None,Scavenger:Electric Synthesize,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+40,Azuroc,Crystal,None,Mirroring:Fainted Curse,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+41,Zenoreth,Crystal,None,Channeler:Wrecked Farewell,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+42,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+43,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+44,Bigu,Nature,None,Warm-Blooded:Amphibian,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+45,Babawa,Nature,Water,Mucous:Withdrawal,0,0,0.25,0,0,0.25,0,0,0,0,0,4
+46,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+47,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+48,Kaku,Nature,None,Caffeinated:Mithridatism,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+49,Saku,Nature,Wind,Air Specialist:Botanist,0,2,0.5,0.5,0,0.25,0,0.5,0,0,0,2
+50,Valash,Neutral,Crystal,Scavenger:Determined,0,2,0,0,0.5,2,0,0,0,2,0,0.5
+51,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+52,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+53,Barnshe,Mental,Wind,Neutrality:Air Specialist,0.5,0,0,0,4,0.5,0,0.5,2,0.5,2,0
+54,Gyalis,Crystal,Melee,Mirroring:Resistant,0,2,0,0,0.5,2,0,0,2,0,0,0.5
+55,Occlura,Crystal,None,Warm-Blooded:Scavenger,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+56,Myx,Crystal,Mental,Puppet Master:Rejuvenate,0.5,2,0,0,0,2,0.5,0,2,0,2,0.5
+57,Raiber,Fire,None,Camaraderie:Rested,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+58,Raize,Fire,None,Furor:Demoralize,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+59,Raican,Fire,None,Last Rush:Resilient,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+60,Pewki,Water,None,Hydrologist:Rested,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+61,Piraniant,Water,None,Patient:Energy Reserve,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+62,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+63,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+64,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+65,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+66,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+67,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+68,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+69,Saipat,Water,Melee,Amphibian:Toxic Affinity,0,0.5,0.5,2,2,0.5,2,0,2,0.5,0,2
+70,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+71,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+72,Crystle,Crystal,None,Amphibian:Rested,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+73,Sherald,Crystal,None,Mirroring:Provident,0,2,0,0,0.5,2,0.5,0,0,2,0,0.5
+74,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+75,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+76,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+77,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+78,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+79,Hocus,Mental,None,Mirroring,0.5,0,0,0,2,0,0,0,2,0.5,2,0
+80,Pocus,Mental,None,Unknown,0.5,0,0,0,2,0,0,0,2,0.5,2,0
+81,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+82,Sparzy,Electric,None,Last Rush:Lightning Rod,0,0,0,0,0.5,2,0,0.5,0,0,2,0
+83,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+84,Mushi,Toxic,None,Resistant:Resilient,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
+85,Mushook,Toxic,Melee,Parrier:Tireless,0,0,0.5,0.5,0,0,2,2,2,0.5,0,0.5
+86,Magmis,Fire,None,Caffeinated:Thick Skin,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+87,Mastione,Fire,None,Bully:Pyromaniac,0,0.5,2,0.5,0,2,0,0,0,0,0.5,0
+88,Umishi,Water,None,Shared Pain:Caffeinated,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+89,Ukama,Water,None,Hydrologist:Plethoric,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+90,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+91,Raignet,Unknown,None,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+92,Smazee,Melee,None,Fever Rush:Friendship,0,0,0,0,0,0,2,0,2,0.5,0,0
+93,Baboong,Melee,None,Brawny:Warm-Blooded,0,0,0,0,0,0,2,0,2,0.5,0,0
+94,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+95,Zizare,Earth,None,Unknown,0,0.5,2,2,0.5,0,0,0,0,2,0.5,0.5
+96,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+97,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+98,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+99,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+100,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+101,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+102,Spriole,Nature,None,Camaraderie:Botanist,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+103,Deendre,Nature,None,Mithridatism:Settling,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+104,Cerneaf,Nature,None,Callosity:Settling,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
+105,Toxolotl,Toxic,None,Toxic Farewell,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
+106,Noxolotl,Toxic,None,Trance:Toxic Skin,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
+107,Blooze,Toxic,None,Toxic Skin:Bully,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
+108,Goolder,Toxic,None,Strong Liver:Punching Bag,0,0,0.5,0.5,0,0,0,2,0,0,0,0.5
+109,Zephyruff,Toxic,Wind,Toxic Affinity:Air Specialist,0,0,0.5,0.5,2,0.5,0,0,0,0,0,0.5
+110,Volarend,Toxic,Wind,Aerobic:Anaerobic,0,0,0.5,0.5,2,0.5,0,0,0,0,0,0.5
+111,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+112,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+113,Ganki,Electric,Wind,Botanophobia:Cold-Natured,0,0,0,0,0,0,0,0.25,0,0,2,0
+114,Gazuma,Electric,Wind,Receptive:Fast Charge,0,0,0,0,0,0,0,0.25,0,0,2,0
+115,Oceara,Water,None,Hydrologist:Mithridatism,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+116,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+117,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+118,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+119,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+120,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+121,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+122,Shuine,Crystal,Water,Immunity:Guardian,0,0,0.5,2,0,0,0.5,0,0,2,0,0
+123,Nessla,Water,Electric,Electric Synthesize:Hydrologist,0,0.5,0.5,2,0,0,0,0.5,0,0,2,2
+124,Valiar,Mental,None,Unknown,0.5,0,0,0,2,0,0,0,2,0.5,2,0
+125,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+126,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+127,Kalazu,Water,None,Mithridatism:Hydrologist,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
+128,Kalabyss,Water,Toxic,Botanophobia:Loneliness,0,0.5,0.25,2,2,0.5,0,2,0,0,0,0
+129,Adoroboros,Toxic,Mental,Synergy Master:Toxic Skin,0.5,0,0.5,0.5,2,0,0,2,2,0.5,2,0.5
+130,Tuwai,Wind,None,Spoilsport:Resilient,0,0,0,0,2,0.5,0,0.5,0,0,0,0
+131,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+132,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+133,Tuvine,Wind,Crystal,Receptive:Determined,0,2,0,0,0,0,0.5,0.5,0,2,0,0.5
+134,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+135,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+136,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+137,Kinu,Nature,Mental,Protector:Benefactor,0.5,2,0.5,0.5,0,0.5,0,0,2,0.5,2,2
+138,Vulvir,Fire,Earth,Camaraderie:Caffeinated,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
+139,Vulor,Fire,Earth,Pyromaniac:Individualist,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
+140,Vulcrane,Fire,Earth,Receptive:Vigorous,0,0.25,4,0,0.5,2,0,0,0,2,0.25,0.5
+141,Pigepic,Wind,None,Friendship:Fainted Curse,0,0,0,0,2,0.5,0,0.5,0,0,0,0
+142,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+143,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+144,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+145,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+146,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+147,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+148,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+149,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+150,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+151,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+152,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+153,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+154,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+155,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+156,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+157,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+158,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+159,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+160,Unknown,Unknown,Unknown,Unknown,0,0,0,0,0,0,0,0,0,0,0,0
+161,Anahir,Crystal,Fire,Trauma:Flawed Crystal,0,0,2,0.5,0.5,4,0.5,0,0,2,0.5,0.5

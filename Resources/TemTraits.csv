@@ -1,0 +1,76 @@
+Trait;Description
+Aerobic;When attacking with Wind techniques, gets SPDEF -1 and SPD +1.
+Air Specialist;+15% damage with Wind techniques.
+Amphibian;When attacked with a Water technique, increases SPD by 1 stage.
+Anaerobic;When attacking with Toxic techniques, gets SPDEF +1 and SPATK -1.
+Apothecary;When attacking with a Special technique, the target gets Poisoned for 1 turn if it's a rival or Regenerated for 1 turn if it's an ally.
+Avenger;When an ally is knocked-out, gets SPATK +1 and SPD +1.
+Benefactor;When an ally is damaged, restores 10% of max HP.
+Botanist;+15% damage with Nature techniques.
+Botanophobia;When attacked with a Nature technique, increases damage by 50%.
+Brawny;Physical techniques do 20% more damage.
+Bully;While allies outnumber rivals, techniques inflict +30% damage.
+Caffeinated;Prevents the Asleep Status condition.
+Camaraderie;When attacked, reduces 50% damage if both allies are part of the same evolutionary line.
+Callosity;When attacked by a physical technique, increases DEF by 1 stage.
+Channeler;Damage done with Special techniques is increased by 25%.
+Cold-Natured;Instead of getting Cold, the Temtem gets Frozen.
+Demoralize;When entering the battlefield, decreases enemy team SPD by 1 stage.
+Determined;Prevents negative stat stage changes.
+Electric Synthesize;When attacked with an Electric technique, restores HP instead of receiving damage.
+Energy Reserve;If HP is below 25% by the end of the turn, gets Vigorized for 2 turns.
+Fainted Curse;When knocked-out, the attacker loses 50% of max HP.
+Fast Charge;When a Digital ally enters the battlefield, gets SPD +2.
+Fever Rush;When getting a Status condition, increases ATK by 1 stage.
+Flawed Crystal;When attacked by a Mental, Toxic, or Electric Technique, increases damage by 50%.
+Friendship;Immune to ally's offensive techniques.
+Furor;When HP is below 33%, techniques do 33% more damage.
+Guardian;Prevents the Cold, Burnt, Poisoned, and Doomed Status condition on the ally.
+Hydrologist;+15% damage with Water techniques.
+Hover;When attacked with an Earth technique, reduces damage by 50%.
+Immunity;Resists damage from Toxic techniques.
+Individualist;Techniques targeting the ally will fail.
+Last Rush;Increases ATK, SPATK and SPD by 50% while being the last standing allied Temtem.
+Lightning Rod;Damage taken from Electric Techniques is reduced by 20%.
+Loneliness;Synergies won't work on both allies.
+Mental Alliance;Increases SPATK by 15% if an ally is Mental.
+Mirroring;When attacked with a Special technique, the attacker gets 20% knockback damage.
+Mithridatism;Prevents the Poisoned Status condition.
+Motivator;At the start of the turn, allies restore 10% of STA.
+Mucous;Resists damage from Electric techniques and prevents the Cold and Burnt Status condition.
+Neutrality;Prevents all Status Conditions.
+Parrier;Damage taken from Physical techniques is reduced by 30%.
+Patient;Restores 10% of max STA when using a Hold technique.
+Plethoric;Temtem has 30% more SPD when HP is full.
+Power Nap;At the start of the turn, restores 15% of max HP of an Asleep Temtem.
+Prideful;When attacking, gets ATK +1, SPATK +1, and SPD +1 if the target is knocked-out.
+Protector;When entering the battlefield, the ally gets DEF +1 and SPDEF +1.
+Provident;When attacked by a Fire, Earth, or Melee technique, gets SPDEF +1.
+Punching Bag;Damage taken from Melee techniques is reduced by 30%.
+Puppet Master;While HP is below 40%, received rival techniques get redirected to the ally.
+Pyromaniac;+15% damage with Fire techniques.
+Receptive;Increases duration of positive Status conditions by 1.
+Rejuvenate;When attacking with a Physcal technique, restore 15% of max HP.
+Resilient;Cannot be knocked-out due to overexertion.
+Resistant;When getting a negative status condition, decreases its turns by 1.
+Rested;Increases ATK and SPATK by 30% during the first 2 turns the Temtem is on the battlefield.
+Scavenger;Restores 15% of max HP if another Temtem is knocked-out.
+Settling;Increases ATK by 8% for each turn the Temtem stays on the battlefield.
+Shared Pain;When receiving a consecutive attack in the same turn, the technique gets redirected to the ally.
+Soft Touch;When attacking an Asleep Status condition target, it won't wake up.
+Strong Liver;When attacked with a Toxic technique, restores HP instead of receiving damage.
+Synergy Master;Damage done with synergy techniques is increased by 25% while the Temtem participates in the synergy.
+Thick Skin;When attacked by a Fire technique, reduces damage by 50%.
+Tireless;Prevents the overexertion turn penalization.
+Toxic Affinity;Toxic techniques get a damage boost of the same type.
+Toxic Farewell;When knocked-out, the attacker gets the Poisoned Status condition for 3 turns.
+Toxic Skin;When attacked with a Physical technique, the attacker gets Poisoned for 2 turns.
+Trance;When attacked, gets Asleep Condition for 2 turns, SPATK +2 and SPDEF +2 if HP is below 30%.
+Trauma;Decreases DEF by 1 stage if hit by a physical technique, and decreases SPDEF by 1 stage if hit by a special technique.
+Tri-Apothecary;When attacking with a Special technique, the target gets Poisoned for 3 turns if it's a rival or Regenerated for 3 turns if it's an ally.
+Vigorous;Damage done when overexerting is increased by 50%.
+Warm-Blooded;Prevents the Cold Status condition.
+Water Affinity;Water techniques get a damage boost of the same type.
+Withdrawal;When resting, restores 15% of max HP and removes the Asleep Status condition.
+Wrecked Farewell;When knocked out by overexertion damage, every Temtem loses 25% of max HP.
+Zen;When getting the Asleep Status condition, gets DEF +1 and SPDEF +1.
