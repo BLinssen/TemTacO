@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TemTacO"
+        xmlns:customControl="clr-namespace:TemTacO"
         mc:Ignorable="d"
-        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000" Icon="Resources/TemTacO.png" WindowState="Maximized">
+        Title="TemTacO" Topmost="True" ResizeMode="NoResize" Background="{x:Null}" WindowStyle="None" Foreground="#00ECDEDE" AllowsTransparency="True" Width="1500" Height="1000" Icon="Temporium_Icon.ico" WindowState="Maximized">
     <Window.Resources>
         <ControlTemplate x:Key="CustomButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
@@ -44,159 +44,283 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <Storyboard x:Key="TypeDefenseShow">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-500,0,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:00.75" Value="0,0,0,0" />
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="TypeDefenseHide">
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:00.75" Value="-500,0,0,0" />
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
     <Grid Background="#00000000" Margin="0">
-        <Grid x:Name="TemTacOverlay" Panel.ZIndex="-1">
-            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="-13,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Right" Width="132">
+        <Grid x:Name="TemTacOverlay" Panel.ZIndex="-1" Margin="-500,0,0,0">
+
+            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="-13,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Right" Width="132" MouseEnter="EnemyTemLeft_MouseEnter" MouseLeave="EnemyTemLeft_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik">
                 <Label.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </Label.Effect>
             </Label>
-            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="-13,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="132" HorizontalContentAlignment="Right">
+            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="-13,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="132" HorizontalContentAlignment="Right" MouseEnter="EnemyTemRight_MouseEnter" MouseLeave="EnemyTemRight_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik" >
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                 </Label.Effect>
             </Label>
-            <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="124,46,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
-                <Image x:Name="TypeMatchupNeutral" HorizontalAlignment="Left" Height="30" Margin="0,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Neutral.png"/>
-                <Image x:Name="TypeMatchupFire" HorizontalAlignment="Left" Height="30" Margin="30,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Fire.png"/>
-                <Image x:Name="TypeMatchupWater" HorizontalAlignment="Left" Height="30" Margin="60,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Water.png"/>
-                <Image x:Name="TypeMatchupNature" HorizontalAlignment="Left" Height="30" Margin="90,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Nature.png"/>
-                <Image x:Name="TypeMatchupElectric" HorizontalAlignment="Left" Height="30" Margin="120,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Electric.png"/>
-                <Image x:Name="TypeMatchupEarth" HorizontalAlignment="Left" Height="30" Margin="150,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Earth.png"/>
-                <Image x:Name="TypeMatchupMental" HorizontalAlignment="Left" Height="30" Margin="180,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Mental.png"/>
-                <Image x:Name="TypeMatchupWind" HorizontalAlignment="Left" Height="30" Margin="210,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Wind.png"/>
-                <Image x:Name="TypeMatchupDigital" HorizontalAlignment="Left" Height="30" Margin="240,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Digital.png"/>
-                <Image x:Name="TypeMatchupMelee" HorizontalAlignment="Left" Height="30" Margin="270,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Melee.png"/>
-                <Image x:Name="TypeMatchupCrystal" HorizontalAlignment="Left" Height="30" Margin="300,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Crystal.png"/>
-                <Image x:Name="TypeMatchupToxic" HorizontalAlignment="Left" Height="30" Margin="330,-30,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Toxic.png"/>
+            <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="124,21,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
+                <Image x:Name="TypeMatchupNeutral" HorizontalAlignment="Left" Height="30" Margin="0,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Neutral.png"/>
+                <Image x:Name="TypeMatchupFire" HorizontalAlignment="Left" Height="30" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Fire.png"/>
+                <Image x:Name="TypeMatchupWater" HorizontalAlignment="Left" Height="30" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Water.png"/>
+                <Image x:Name="TypeMatchupNature" HorizontalAlignment="Left" Height="30" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Nature.png"/>
+                <Image x:Name="TypeMatchupElectric" HorizontalAlignment="Left" Height="30" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Electric.png"/>
+                <Image x:Name="TypeMatchupEarth" HorizontalAlignment="Left" Height="30" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Earth.png"/>
+                <Image x:Name="TypeMatchupMental" HorizontalAlignment="Left" Height="30" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Mental.png"/>
+                <Image x:Name="TypeMatchupWind" HorizontalAlignment="Left" Height="30" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Wind.png"/>
+                <Image x:Name="TypeMatchupDigital" HorizontalAlignment="Left" Height="30" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Digital.png"/>
+                <Image x:Name="TypeMatchupMelee" HorizontalAlignment="Left" Height="30" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Melee.png"/>
+                <Image x:Name="TypeMatchupCrystal" HorizontalAlignment="Left" Height="30" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Crystal.png"/>
+                <Image x:Name="TypeMatchupToxic" HorizontalAlignment="Left" Height="30" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Toxic.png"/>
             </Grid>
-            <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="124,50,0,0" VerticalAlignment="Top" Width="360">
-                <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+            <Grid x:Name="LeftMatchup" HorizontalAlignment="Left" Height="30" Margin="125,53,0,0" VerticalAlignment="Top" Width="360">
+                <Label x:Name="LMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
-                <Label x:Name="LMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-            </Grid>
-            <Grid x:Name="RightMatchup" HorizontalAlignment="Left" Height="30" Margin="124,84,0,0" VerticalAlignment="Top" Width="360">
-                <Label x:Name="RMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
-                    <Label.Effect>
-                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
-                    </Label.Effect>
-                </Label>
-                <Label x:Name="RMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="30" Height="30" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1">
+                <Label x:Name="LMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
                 </Label>
             </Grid>
+            <Grid x:Name="RightMatchup" HorizontalAlignment="Left" Height="30" Margin="125,83,0,0" VerticalAlignment="Top" Width="360">
+                <Label x:Name="RMNeutral" Content="" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" Background="{x:Null}" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMFire" Content="" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMWater" Content="" HorizontalAlignment="Left" Margin="60,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMNature" Content="" HorizontalAlignment="Left" Margin="90,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMElectric" Content="" HorizontalAlignment="Left" Margin="120,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMEarth" Content="" HorizontalAlignment="Left" Margin="150,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMMental" Content="" HorizontalAlignment="Left" Margin="180,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMWind" Content="" HorizontalAlignment="Left" Margin="210,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMDigital" Content="" HorizontalAlignment="Left" Margin="240,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMMelee" Content="" HorizontalAlignment="Left" Margin="270,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMCrystal" Content="" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="RMToxic" Content="" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" Width="29" Height="29" Foreground="White" FontSize="20" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" UseLayoutRounding="False" BorderThickness="1" FontFamily="/TemTacO;component/fonts/#Rubik">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+
             <Image HorizontalAlignment="Left" Height="119" Margin="-13,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6" Opacity="0.995"/>
         </Grid>
-        <!--<Button Content="PIC" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Width="27" Click="BtnEnemyTemSave_Click"/>-->
+        <Grid x:Name="TemTraitsGrid" HorizontalAlignment="Left" Height="170" Margin="50,150,0,0" VerticalAlignment="Top" Width="350" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/TraitBackground.png"/>
+            </Grid.Background>
+            <Label x:Name="EnemyTemTraitName1" Content="" Margin="20,15,0,0" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="132" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label.Effect>
+                    <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
+                </Label.Effect>
+            </Label>
+            <TextBlock x:Name="EnemyTemTraitDescription1" Margin="15,46,20,90" Foreground="White" TextWrapping="Wrap">
+                <TextBlock.Effect>
+                    <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Label x:Name="EnemyTemTraitName2" Content="" Margin="20,72,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="132" HorizontalAlignment="Left" FontFamily="/TemTacO;component/fonts/#Rubik">
+                <Label.Effect>
+                    <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
+                </Label.Effect>
+            </Label>
+            <TextBlock x:Name="EnemyTemTraitDescription2" Margin="15,103,20,31" Foreground="White" TextWrapping="Wrap" FontFamily="/TemTacO;component/fonts/#Rubik">
+                <TextBlock.Effect>
+                    <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+        <Grid x:Name="TemSettings" Width="300" Height="233" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/TraitBackground.png"/>
+            </Grid.Background>
+            <Grid Height="55" VerticalAlignment="Top" Margin="23,20,23,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_A.png"/>
+                </Grid.Background>
+                <Label Content="Always show Defense" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="212" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <CheckBox x:Name="checkboxDefense" HorizontalAlignment="Right" Width="16" Margin="0,20,15,19" RenderTransformOrigin="1.516,0.6" Checked="CheckboxDefense_Checked" Unchecked="CheckboxDefense_Unchecked" >
+                    <CheckBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="16.256" Y="1.5"/>
+                        </TransformGroup>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+            </Grid>
+            <!--<Grid Height="55" VerticalAlignment="Top" Margin="23,87,23,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_B.png"/>
+                </Grid.Background>
+                <Label Content="Always show Traits" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="218" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <CheckBox x:Name="checkboxTrait" HorizontalAlignment="Right" Width="16" Margin="0,20,15,19" RenderTransformOrigin="0.5,0.5" Checked="CheckboxTrait_Checked" Unchecked="CheckboxTrait_Unchecked" >
+                    <CheckBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+            </Grid>-->
+            <Grid Height="55" VerticalAlignment="Top" Margin="23,87,23,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_B.png"/>
+                </Grid.Background>
+                <Label Content="Resolution" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="218" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <ComboBox x:Name="ComboBoxResolution" Margin="115,10,10,10" BorderBrush="{x:Null}" Foreground="White" Background="#FFF70000" SelectionChanged="ComboBoxResolution_SelectionChanged" SelectedValuePath="Content">
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1920x1080"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1680x1050"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1600x1240"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1600x900"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1440x900"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1366x768"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1360x768"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1280x1024"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1280x960"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1280x800"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1280x768"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1280x720"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1176x664"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1152x864"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1024x768"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="800x600"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="720x576"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="720x480"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="640x480"/>
+                </ComboBox>
+            </Grid>
+            <Button x:Name="BtnQuit" Content="  Close TemTacO" HorizontalAlignment="Left" Margin="23,154,0,0" VerticalAlignment="Top" Width="254" Height="54" FontFamily="/TemTacO;component/fonts/#Rubik" Foreground="White" BorderBrush="{x:Null}" FontSize="20" HorizontalContentAlignment="Left" Click="BtnQuit_Click" Template="{DynamicResource CustomButtonControlTemplate}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_A.png"/>
+                </Button.Background>
+            </Button>
+        </Grid>
+        <Button x:Name="BtnMenu" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Click="BtnMenu_Click" Height="30" BorderBrush="{x:Null}" Template="{DynamicResource CustomButtonControlTemplate}" Panel.ZIndex="20">
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/Temporium_Icon_Adjusted.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
