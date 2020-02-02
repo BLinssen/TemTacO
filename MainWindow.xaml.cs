@@ -429,7 +429,7 @@ namespace TemTacO
             {
                 string[] resolution = ComboBoxResolution.SelectedValue.ToString().Split('x');
                 log.Info($"Changed resolution: {resolution[0]}x{resolution[1]}");
-                ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{resolution[0]}x{resolution[1]}"));
+                ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{resolution[0]}x{resolution[1]}"));                
                 Properties.Settings.Default.Resolution = $"{resolution[0]}x{resolution[1]}";
                 Properties.Settings.Default.Save();
             }
