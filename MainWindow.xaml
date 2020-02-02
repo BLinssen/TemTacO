@@ -290,6 +290,7 @@
                     </Label.Effect>
                 </Label>
                 <ComboBox x:Name="ComboBoxResolution" Margin="115,10,10,10" BorderBrush="{x:Null}" Foreground="#FF232121" Background="#FFF70000" SelectionChanged="ComboBoxResolution_SelectionChanged" SelectedValuePath="Content" FontFamily="/TemTacO;component/fonts/#Rubik" FontSize="20">
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="3440x1440"/>
                     <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1920x1080"/>
                     <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1680x1050"/>
                     <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="1600x1240"/>
