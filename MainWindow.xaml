@@ -211,32 +211,32 @@
 
             <Image HorizontalAlignment="Left" Height="119" Margin="-13,8,0,0" VerticalAlignment="Top" Width="514" Source="Resources/TemBackground.png" Stretch="Fill" Panel.ZIndex="-6" Opacity="0.995"/>
         </Grid>
-        <Grid x:Name="TemTraitsGrid" HorizontalAlignment="Left" Height="170" Margin="50,150,0,0" VerticalAlignment="Top" Width="350" Visibility="Collapsed">
+        <Grid x:Name="TemTraitsGrid" HorizontalAlignment="Left" Height="170" Margin="20,150,0,0" VerticalAlignment="Top" Width="380" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="Resources/TraitBackground.png"/>
             </Grid.Background>
-            <Label x:Name="EnemyTemTraitName1" Content="" Margin="20,15,0,0" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="132" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label x:Name="EnemyTemTraitName1" Content="" Margin="24,7,0,0" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="299" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="/TemTacO;component/fonts/#Rubik">
                 <Label.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </Label.Effect>
             </Label>
-            <TextBlock x:Name="EnemyTemTraitDescription1" Margin="15,46,20,90" Foreground="White" TextWrapping="Wrap">
+            <TextBlock x:Name="EnemyTemTraitDescription1" Margin="15,35,20,91" Foreground="White" TextWrapping="Wrap" FontFamily="/TemTacO;component/fonts/#Rubik">
                 <TextBlock.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Label x:Name="EnemyTemTraitName2" Content="" Margin="20,72,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="132" HorizontalAlignment="Left" FontFamily="/TemTacO;component/fonts/#Rubik">
+            <Label x:Name="EnemyTemTraitName2" Content="" Margin="24,71,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="299" HorizontalAlignment="Left" FontFamily="/TemTacO;component/fonts/#Rubik">
                 <Label.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </Label.Effect>
             </Label>
-            <TextBlock x:Name="EnemyTemTraitDescription2" Margin="15,103,20,31" Foreground="White" TextWrapping="Wrap" FontFamily="/TemTacO;component/fonts/#Rubik">
+            <TextBlock x:Name="EnemyTemTraitDescription2" Margin="15,101,20,26" Foreground="White" TextWrapping="Wrap" FontFamily="/TemTacO;component/fonts/#Rubik">
                 <TextBlock.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </TextBlock.Effect>
             </TextBlock>
         </Grid>
-        <Grid x:Name="TemSettings" Width="300" Height="233" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0" Visibility="Visible">
+        <Grid x:Name="TemSettings" Width="300" Height="233" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="Resources/TraitBackground.png"/>
             </Grid.Background>
