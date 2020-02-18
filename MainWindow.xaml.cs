@@ -37,17 +37,30 @@ namespace TemTacO
         bool AlwaysShowDefense = Properties.Settings.Default.AlwaysShowDefense;
         bool AlwaysShowTrait = Properties.Settings.Default.AlwaysShowTrait;
 
+        CultureInfo enEn = new CultureInfo("en-EN");
+
         //Logging
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public MainWindow()
         {
             InitializeComponent();
-            //Fill lists with data from CSVs
-            TemTems = PopulateList();
-            TemTraits = PopulateTraits();
-            TemResolutions = PopulateResolutions();
-            SupportedResolutions = PopulateSupportedResolutions();
+
+            try
+            {
+                //Fill lists with data from CSVs
+                TemTems = PopulateList();
+                TemTraits = PopulateTraits();
+                TemResolutions = PopulateResolutions();
+                SupportedResolutions = PopulateSupportedResolutions();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message);
+                log.Error(ex.StackTrace);
+                Close();
+            }            
+            
             //Resolution settings
             if (HandleResolution())
             {
@@ -269,7 +282,7 @@ namespace TemTacO
             log.Info("Reading TemList.csv");
             List<TemTem> temTemps = File.ReadAllLines("Resources\\TemTemList.csv")
                                            .Skip(1)
-                                           .Select(v => TemTem.FromCsv(v))
+                                           .Select(v => TemTem.FromCsv(v, enEn))
                                            .ToList();
             return temTemps;
         }
@@ -279,7 +292,7 @@ namespace TemTacO
             log.Info("Reading TemTraits.csv");
             List<TemTrait> tempTemTraits = File.ReadAllLines("Resources\\TemTraits.csv")
                                            .Skip(1)
-                                           .Select(v => TemTrait.FromCsv(v))
+                                           .Select(v => TemTrait.FromCsv(v, enEn))
                                            .ToList();
             return tempTemTraits;
         }
@@ -289,7 +302,7 @@ namespace TemTacO
             log.Info("Reading TemResolutions.csv");
             List<OCR> tempTemResolutions = File.ReadAllLines("Resources\\TemResolutions.csv")
                                            .Skip(1)
-                                           .Select(v => OCR.FromCsv(v))
+                                           .Select(v => OCR.FromCsv(v, enEn))
                                            .ToList();
             return tempTemResolutions;
         }

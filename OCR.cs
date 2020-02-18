@@ -24,20 +24,20 @@ namespace TemTacO
         public string AspectRatio { get; set; }
         public string Resolution { get; set; }
 
-        public static OCR FromCsv(string csvLine)
+        public static OCR FromCsv(string csvLine, CultureInfo cultureInfo)
         {
             string[] values = csvLine.Split(',');
             OCR ocrValues = new OCR();
-            ocrValues.Width = Convert.ToInt32(values[0]);
-            ocrValues.Height = Convert.ToInt32(values[1]);
-            ocrValues.SnipW = Convert.ToInt32(values[2]);
-            ocrValues.SnipH = Convert.ToInt32(values[3]);
-            ocrValues.TemLeftX = Convert.ToInt32(values[4]);
-            ocrValues.TemLeftY = Convert.ToInt32(values[5]);
-            ocrValues.TemRightX = Convert.ToInt32(values[6]);
-            ocrValues.TemRightY = Convert.ToInt32(values[7]);
-            ocrValues.AspectRatio = Convert.ToString(values[8]);
-            ocrValues.Resolution = Convert.ToString(values[9]);
+            ocrValues.Width = Convert.ToInt32(values[0], cultureInfo);
+            ocrValues.Height = Convert.ToInt32(values[1], cultureInfo);
+            ocrValues.SnipW = Convert.ToInt32(values[2], cultureInfo);
+            ocrValues.SnipH = Convert.ToInt32(values[3], cultureInfo);
+            ocrValues.TemLeftX = Convert.ToInt32(values[4], cultureInfo);
+            ocrValues.TemLeftY = Convert.ToInt32(values[5], cultureInfo);
+            ocrValues.TemRightX = Convert.ToInt32(values[6], cultureInfo);
+            ocrValues.TemRightY = Convert.ToInt32(values[7], cultureInfo);
+            ocrValues.AspectRatio = Convert.ToString(values[8], cultureInfo);
+            ocrValues.Resolution = Convert.ToString(values[9], cultureInfo);
             return ocrValues;
         }
 
