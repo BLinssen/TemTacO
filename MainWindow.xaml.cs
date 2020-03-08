@@ -106,6 +106,21 @@ namespace TemTacO
             CommandManager.InvalidateRequerySuggested();
         }        
 
+        private String TypeString(float typeIn)
+        {
+            String str = typeIn.ToString();
+            str = str.TrimStart(new Char[] { '0' });
+            if (str.Equals(".5"))
+            {
+                str = "½";
+            }
+            else if (str.Equals(".25"))
+            {
+                str = "¼";
+            }
+            return str;
+        }
+
         private void ScanScreenTem(bool save)
         {
             //Init
@@ -141,27 +156,40 @@ namespace TemTacO
                 //Get Tem Details
                 TemLeft = GetMatchup(EnemyTemLeft.Content.ToString());
 
+                if (!TemLeft.Type2.Equals("None"))
+                {
+                    EnemyTemLeftType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type2 + ".png", UriKind.Relative));
+                    EnemyTemLeftType2.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png", UriKind.Relative));
+                }
+                else
+                {
+                    EnemyTemLeftType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png", UriKind.Relative));
+                    EnemyTemLeftType2.Source = null;
+                }
+
                 //Get Type Defense
-                LMNeutral.Content = TemLeft.TypeNeutral.ToString().TrimStart(new Char[] { '0' });
-                LMFire.Content = TemLeft.TypeFire.ToString().TrimStart(new Char[] { '0' });
-                LMWater.Content = TemLeft.TypeWater.ToString().TrimStart(new Char[] { '0' });
-                LMNature.Content = TemLeft.TypeNature.ToString().TrimStart(new Char[] { '0' });
-                LMElectric.Content = TemLeft.TypeElectric.ToString().TrimStart(new Char[] { '0' });
-                LMEarth.Content = TemLeft.TypeEarth.ToString().TrimStart(new Char[] { '0' });
-                LMMental.Content = TemLeft.TypeMental.ToString().TrimStart(new Char[] { '0' });
-                LMWind.Content = TemLeft.TypeWind.ToString().TrimStart(new Char[] { '0' });
-                LMDigital.Content = TemLeft.TypeDigital.ToString().TrimStart(new Char[] { '0' });
-                LMMelee.Content = TemLeft.TypeMelee.ToString().TrimStart(new Char[] { '0' });
-                LMCrystal.Content = TemLeft.TypeCrystal.ToString().TrimStart(new Char[] { '0' });
-                LMToxic.Content = TemLeft.TypeToxic.ToString().TrimStart(new Char[] { '0' });
+                LMNeutral.Content = TypeString(TemLeft.TypeNeutral);
+                LMFire.Content = TypeString(TemLeft.TypeFire);
+                LMWater.Content = TypeString(TemLeft.TypeWater);
+                LMNature.Content = TypeString(TemLeft.TypeNature);
+                LMElectric.Content = TypeString(TemLeft.TypeElectric);
+                LMEarth.Content = TypeString(TemLeft.TypeEarth);
+                LMMental.Content = TypeString(TemLeft.TypeMental);
+                LMWind.Content = TypeString(TemLeft.TypeWind);
+                LMDigital.Content = TypeString(TemLeft.TypeDigital);
+                LMMelee.Content = TypeString(TemLeft.TypeMelee);
+                LMCrystal.Content = TypeString(TemLeft.TypeCrystal);
+                LMToxic.Content = TypeString(TemLeft.TypeToxic);
 
                 //Add Green/Red background color
                 AddColor(LeftMatchup.Children);
                 LeftMatchup.Visibility = Visibility.Visible;
+                LeftType.Visibility = Visibility.Visible;
             }
             else
             {
                 LeftMatchup.Visibility = Visibility.Collapsed;
+                LeftType.Visibility = Visibility.Collapsed;
             }
 
             //Init
@@ -201,26 +229,39 @@ namespace TemTacO
                 //Get Tem Details
                 TemRight = GetMatchup(EnemyTemRight.Content.ToString());
 
+                if (!TemRight.Type2.Equals("None"))
+                {
+                    EnemyTemRightType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type2 + ".png", UriKind.Relative));
+                    EnemyTemRightType2.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png", UriKind.Relative));
+                }
+                else
+                {
+                    EnemyTemRightType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png", UriKind.Relative));
+                    EnemyTemRightType2.Source = null;
+                }
+
                 //Get Type Defense
-                RMNeutral.Content = TemRight.TypeNeutral.ToString().TrimStart(new Char[] { '0' });
-                RMFire.Content = TemRight.TypeFire.ToString().TrimStart(new Char[] { '0' });
-                RMWater.Content = TemRight.TypeWater.ToString().TrimStart(new Char[] { '0' });
-                RMNature.Content = TemRight.TypeNature.ToString().TrimStart(new Char[] { '0' });
-                RMElectric.Content = TemRight.TypeElectric.ToString().TrimStart(new Char[] { '0' });
-                RMEarth.Content = TemRight.TypeEarth.ToString().TrimStart(new Char[] { '0' });
-                RMMental.Content = TemRight.TypeMental.ToString().TrimStart(new Char[] { '0' });
-                RMWind.Content = TemRight.TypeWind.ToString().TrimStart(new Char[] { '0' });
-                RMDigital.Content = TemRight.TypeDigital.ToString().TrimStart(new Char[] { '0' });
-                RMMelee.Content = TemRight.TypeMelee.ToString().TrimStart(new Char[] { '0' });
-                RMCrystal.Content = TemRight.TypeCrystal.ToString().TrimStart(new Char[] { '0' });
-                RMToxic.Content = TemRight.TypeToxic.ToString().TrimStart(new Char[] { '0' });
+                RMNeutral.Content = TypeString(TemRight.TypeNeutral);
+                RMFire.Content = TypeString(TemRight.TypeFire);
+                RMWater.Content = TypeString(TemRight.TypeWater);
+                RMNature.Content = TypeString(TemRight.TypeNature);
+                RMElectric.Content = TypeString(TemRight.TypeElectric);
+                RMEarth.Content = TypeString(TemRight.TypeEarth);
+                RMMental.Content = TypeString(TemRight.TypeMental);
+                RMWind.Content = TypeString(TemRight.TypeWind);
+                RMDigital.Content = TypeString(TemRight.TypeDigital);
+                RMMelee.Content = TypeString(TemRight.TypeMelee);
+                RMCrystal.Content = TypeString(TemRight.TypeCrystal);
+                RMToxic.Content = TypeString(TemRight.TypeToxic);
                 //Add Green/Red Background color
                 AddColor(RightMatchup.Children);
                 RightMatchup.Visibility = Visibility.Visible;
+                RightType.Visibility = Visibility.Visible;
             }
             else
             {
                 RightMatchup.Visibility = Visibility.Collapsed;
+                RightType.Visibility = Visibility.Collapsed;
             }
 
             if (!TemTypeDef && (EnemyTemLeft.Content.ToString() != "" || EnemyTemRight.Content.ToString() != "") && !AlwaysShowDefense)
@@ -239,11 +280,23 @@ namespace TemTacO
         {
             foreach (System.Windows.Controls.Label label in collection)
             {
-                if (label.Content.ToString() != "" && double.Parse(label.Content.ToString()) < 1)
+                String str = label.Content.ToString();
+                double value = 1;
+                if (str.Equals("½"))
+                {
+                    value = 0.5;
+                } else if (str.Equals("¼"))
+                {
+                    value = 0.25;
+                } else if (!str.Equals(""))
+                {
+                    value = double.Parse(str);
+                }
+                if (label.Content.ToString() != "" && value < 1)
                 {
                     label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 211, 111, 106));
                 }
-                else if (label.Content.ToString() != "" && double.Parse(label.Content.ToString()) > 1)
+                else if (label.Content.ToString() != "" && value > 1)
                 {
                     label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 169, 215, 157));
                 }
