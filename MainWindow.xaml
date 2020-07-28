@@ -248,15 +248,15 @@
                 </TextBlock.Effect>
             </TextBlock>
         </Grid>
-        <Grid x:Name="TemSettings" Width="300" Height="233" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0" Visibility="Collapsed">
+        <Grid x:Name="TemSettings" Width="300" Height="365" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0" Visibility="Visible">
             <Grid.Background>
-                <ImageBrush ImageSource="Resources/TraitBackground.png"/>
+                <ImageBrush ImageSource="Resources/BG_Settings.png"/>
             </Grid.Background>
             <Grid Height="55" VerticalAlignment="Top" Margin="23,20,23,0">
                 <Grid.Background>
                     <ImageBrush ImageSource="Resources/TemBG_A.png"/>
                 </Grid.Background>
-                <Label Content="Always show Defense" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="212" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                <Label Content="Force show overlay" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="212" FontFamily="/TemTacO;component/fonts/#Rubik" >
                     <Label.Effect>
                         <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                     </Label.Effect>
@@ -271,6 +271,41 @@
                         </TransformGroup>
                     </CheckBox.RenderTransform>
                 </CheckBox>
+            </Grid>
+            <Grid Height="55" VerticalAlignment="Top" Margin="23,87,23,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_A.png"/>
+                </Grid.Background>
+                <Label Content="Display as fractions" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="212" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <CheckBox x:Name="checkboxFractions" HorizontalAlignment="Right" Width="16" Margin="0,20,15,19" RenderTransformOrigin="1.516,0.6" Checked="CheckboxFractions_Checked" Unchecked="CheckboxFractions_Unchecked" >
+                    <CheckBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform X="16.256" Y="1.5"/>
+                        </TransformGroup>
+                    </CheckBox.RenderTransform>
+                </CheckBox>
+            </Grid>
+            <Grid Height="55" VerticalAlignment="Top" Margin="23,154,23,0">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Resources/TemBG_A.png"/>
+                </Grid.Background>
+                <Label Content="Traits Display" HorizontalAlignment="Left" Margin="5,10,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="212" FontFamily="/TemTacO;component/fonts/#Rubik" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <ComboBox x:Name="ComboBoxTraits" Margin="145,10,10,10" BorderBrush="{x:Null}" Foreground="#FF232121" Background="#FFF70000" SelectionChanged="ComboBoxTraits_SelectionChanged" SelectedValuePath="Content" FontFamily="/TemTacO;component/fonts/#Rubik" FontSize="20">
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="Never"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="Hover"/>
+                    <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="Always"/>
+                </ComboBox>
             </Grid>
             <!--<Grid Height="55" VerticalAlignment="Top" Margin="23,87,23,0">
                 <Grid.Background>
@@ -292,7 +327,7 @@
                     </CheckBox.RenderTransform>
                 </CheckBox>
             </Grid>-->
-            <Grid Height="55" VerticalAlignment="Top" Margin="23,87,23,0">
+            <Grid Height="55" VerticalAlignment="Top" Margin="23,217,23,0">
                 <Grid.Background>
                     <ImageBrush ImageSource="Resources/TemBG_B.png"/>
                 </Grid.Background>
@@ -326,7 +361,7 @@
                     <ComboBoxItem Foreground="Black" FontSize="18" FontFamily="/TemTacO;component/fonts/#Rubik" Content="640x480"/>
                 </ComboBox>
             </Grid>
-            <Button x:Name="BtnQuit" Content="  Close TemTacO" HorizontalAlignment="Left" Margin="23,154,0,0" VerticalAlignment="Top" Width="254" Height="54" FontFamily="/TemTacO;component/fonts/#Rubik" Foreground="White" BorderBrush="{x:Null}" FontSize="20" HorizontalContentAlignment="Left" Click="BtnQuit_Click" Template="{DynamicResource CustomButtonControlTemplate}">
+            <Button x:Name="BtnQuit" Content="  Close TemTacO" HorizontalAlignment="Left" Margin="23,280,0,0" VerticalAlignment="Top" Width="254" Height="54" FontFamily="/TemTacO;component/fonts/#Rubik" Foreground="White" BorderBrush="{x:Null}" FontSize="20" HorizontalContentAlignment="Left" Click="BtnQuit_Click" Template="{DynamicResource CustomButtonControlTemplate}">
                 <Button.Background>
                     <ImageBrush ImageSource="Resources/TemBG_A.png"/>
                 </Button.Background>
@@ -334,7 +369,7 @@
         </Grid>
         <Button x:Name="BtnMenu" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Click="BtnMenu_Click" Height="30" BorderBrush="{x:Null}" Template="{DynamicResource CustomButtonControlTemplate}" Panel.ZIndex="20">
             <Button.Background>
-                <ImageBrush ImageSource="Resources/Temporium_Icon_Adjusted.png"/>
+                <ImageBrush ImageSource="Resources/Menu_Icon.png"/>
             </Button.Background>
         </Button>
     </Grid>

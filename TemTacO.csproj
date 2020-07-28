@@ -132,6 +132,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\BG_Settings.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Menu_Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\TemBackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
