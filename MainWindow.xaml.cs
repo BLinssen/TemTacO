@@ -35,7 +35,6 @@ namespace TemTacO
         TemTem TemRight = new TemTem();
         bool TemTypeDef = false;
         bool AlwaysShowDefense = Properties.Settings.Default.AlwaysShowDefense;
-        bool ShowFractions = Properties.Settings.Default.ShowFractions;
         string TraitDisplay = Properties.Settings.Default.TraitDisplay;
 
         CultureInfo enEn = new CultureInfo("en-EN");
@@ -49,7 +48,6 @@ namespace TemTacO
 
             // Load Settings
             checkboxDefense.IsChecked = AlwaysShowDefense;
-            checkboxFractions.IsChecked = ShowFractions;
             ComboBoxTraits.SelectedValue = TraitDisplay;          
 
             try
@@ -187,15 +185,28 @@ namespace TemTacO
                 LMCrystal.Content = TypeString(TemLeft.TypeCrystal);
                 LMToxic.Content = TypeString(TemLeft.TypeToxic);
 
-                //Add Green/Red background color
+                //Add Colored background
                 AddColor(LeftMatchup.Children);
                 LeftMatchup.Visibility = Visibility.Visible;
                 LeftType.Visibility = Visibility.Visible;
+
+                // Trait Visibility
+                if (Properties.Settings.Default.TraitDisplay == "Always")
+                {
+                    SetTrait(TemLeft);
+                    TemTraitsGridUp.Visibility = Visibility.Visible;
+                }
             }
             else
             {
                 LeftMatchup.Visibility = Visibility.Collapsed;
                 LeftType.Visibility = Visibility.Collapsed;
+
+                // Trait Visibility
+                if (Properties.Settings.Default.TraitDisplay == "Always")
+                {
+                    TemTraitsGridUp.Visibility = Visibility.Collapsed;
+                }
             }
 
             //Init
@@ -259,15 +270,38 @@ namespace TemTacO
                 RMMelee.Content = TypeString(TemRight.TypeMelee);
                 RMCrystal.Content = TypeString(TemRight.TypeCrystal);
                 RMToxic.Content = TypeString(TemRight.TypeToxic);
-                //Add Green/Red Background color
+
+                //Add Colored Background
                 AddColor(RightMatchup.Children);
                 RightMatchup.Visibility = Visibility.Visible;
                 RightType.Visibility = Visibility.Visible;
+
+                // Trait Visibility
+                if (Properties.Settings.Default.TraitDisplay == "Always")
+                {
+                    // Switch to Upper Grid if it's not in use
+                    if (TemTraitsGridUp.Visibility == Visibility.Collapsed)
+                    {
+                        SetTrait(TemRight);
+                        TemTraitsGridUp.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SetTraitAlt(TemRight);
+                        TemTraitsGridDown.Visibility = Visibility.Visible;
+                    }                 
+                }
             }
             else
             {
                 RightMatchup.Visibility = Visibility.Collapsed;
                 RightType.Visibility = Visibility.Collapsed;
+
+                // Trait Visibility
+                if (Properties.Settings.Default.TraitDisplay == "Always")
+                {
+                    TemTraitsGridDown.Visibility = Visibility.Collapsed;
+                }
             }
 
             if (!TemTypeDef && (EnemyTemLeft.Content.ToString() != "" || EnemyTemRight.Content.ToString() != "") && !AlwaysShowDefense)
@@ -286,7 +320,8 @@ namespace TemTacO
         {
             foreach (System.Windows.Controls.Label label in collection)
             {
-                String str = label.Content.ToString();
+                // Get Value
+                string str = label.Content.ToString();
                 double value = 1;
                 if (str.Equals("½"))
                 {
@@ -294,17 +329,37 @@ namespace TemTacO
                 } else if (str.Equals("¼"))
                 {
                     value = 0.25;
-                } else if (!str.Equals(""))
+                } else if (!str.Equals(string.Empty))
                 {
                     value = double.Parse(str);
                 }
-                if (label.Content.ToString() != "" && value < 1)
+
+                // Check if Label is not Empty
+                if (label.Content.ToString() != string.Empty)
                 {
-                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 211, 111, 106));
-                }
-                else if (label.Content.ToString() != "" && value > 1)
-                {
-                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 169, 215, 157));
+                    // Switch on Value
+                    switch (value)
+                    {
+                        case 0.25:
+                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 241, 138, 51));
+                            break;
+
+                        case 0.5:
+                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 237, 221, 58));
+                            break;
+
+                        case 2:
+                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 109, 237, 51));
+                            break;
+
+                        case 4:
+                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 77, 176, 51));
+                            break;
+
+                        default:
+                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
+                            break;
+                    }
                 }
                 else
                 {
@@ -334,7 +389,30 @@ namespace TemTacO
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2.Text = TemTrait.Description;
             }
-        }            
+        }
+
+        private void SetTraitAlt(TemTem Tem)
+        {
+            string[] Traits = Tem.Trait.ToString().Split(':');
+            if (Traits.Length > 0)
+            {
+                //Set Trait Name
+                EnemyTemTraitName1Perma.Content = Traits[0];
+                //Set Trait Description
+                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[0]));
+                TemTrait TemTrait = TemTraits[index];
+                EnemyTemTraitDescription1Perma.Text = TemTrait.Description;
+            }
+            if (Traits.Length > 1)
+            {
+                //Set Trait Name
+                EnemyTemTraitName2Perma.Content = Traits[1];
+                //Set Trait Description
+                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[1]));
+                TemTrait TemTrait = TemTraits[index];
+                EnemyTemTraitDescription2Perma.Text = TemTrait.Description;
+            }
+        }
 
         private List<TemTem> PopulateList()
         {
@@ -392,30 +470,30 @@ namespace TemTacO
 
         private void EnemyTemLeft_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (TemLeft.Trait != null && EnemyTemLeft.Content.ToString() != "")
+            if (TemLeft.Trait != null && EnemyTemLeft.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
                 SetTrait(TemLeft);
-                TemTraitsGrid.Visibility = Visibility.Visible;
+                TemTraitsGridUp.Visibility = Visibility.Visible;
             }
         }
 
         private void EnemyTemRight_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (TemRight.Trait != null && EnemyTemRight.Content.ToString() != "")
+            if (TemRight.Trait != null && EnemyTemRight.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
                 SetTrait(TemRight);
-                TemTraitsGrid.Visibility = Visibility.Visible;
+                TemTraitsGridUp.Visibility = Visibility.Visible;
             }
         }
 
         private void EnemyTemRight_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            TemTraitsGrid.Visibility = Visibility.Collapsed;
+            TemTraitsGridUp.Visibility = Visibility.Collapsed;
         }
 
         private void EnemyTemLeft_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            TemTraitsGrid.Visibility = Visibility.Collapsed;
+            TemTraitsGridUp.Visibility = Visibility.Collapsed;
         }
 
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
@@ -484,7 +562,7 @@ namespace TemTacO
 
         private void ComboBoxResolution_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ComboBoxResolution.SelectedValue != null && ComboBoxResolution.SelectedValue.ToString() != "")
+            if(ComboBoxResolution.SelectedValue != null && ComboBoxResolution.SelectedValue.ToString() != string.Empty)
             {
                 string[] resolution = ComboBoxResolution.SelectedValue.ToString().Split('x');
                 log.Info($"Changed resolution: {resolution[0]}x{resolution[1]}");
@@ -494,24 +572,16 @@ namespace TemTacO
             }
         }
 
-        private void CheckboxFractions_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.ShowFractions = false;
-            Properties.Settings.Default.Save();
-        }
-
-        private void CheckboxFractions_Checked(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.ShowFractions = true;
-            Properties.Settings.Default.Save();
-        }
-
         private void ComboBoxTraits_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxTraits.SelectedValue != null && ComboBoxTraits.SelectedValue.ToString() != "")
+            if (ComboBoxTraits.SelectedValue != null && ComboBoxTraits.SelectedValue.ToString() != string.Empty)
             {
                 Properties.Settings.Default.TraitDisplay = ComboBoxTraits.SelectedValue.ToString();
                 Properties.Settings.Default.Save();
+
+                // Reset Trait Grids
+                TemTraitsGridUp.Visibility = Visibility.Collapsed;
+                TemTraitsGridDown.Visibility = Visibility.Collapsed;
             }
         }
     }

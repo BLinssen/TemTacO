@@ -8,9 +8,6 @@
     <Setting Name="Resolution" Type="System.String" Scope="User">
       <Value Profile="(Default)">None</Value>
     </Setting>
-    <Setting Name="ShowFractions" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="TraitDisplay" Type="System.String" Scope="User">
       <Value Profile="(Default)">Hover</Value>
     </Setting>

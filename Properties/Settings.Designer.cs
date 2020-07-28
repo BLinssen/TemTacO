@@ -49,18 +49,6 @@ namespace TemTacO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ShowFractions {
-            get {
-                return ((bool)(this["ShowFractions"]));
-            }
-            set {
-                this["ShowFractions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Hover")]
         public string TraitDisplay {
             get {
