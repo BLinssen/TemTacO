@@ -37,18 +37,6 @@ namespace TemTacO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AlwaysShowTrait {
-            get {
-                return ((bool)(this["AlwaysShowTrait"]));
-            }
-            set {
-                this["AlwaysShowTrait"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("None")]
         public string Resolution {
             get {
@@ -56,6 +44,30 @@ namespace TemTacO.Properties {
             }
             set {
                 this["Resolution"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowFractions {
+            get {
+                return ((bool)(this["ShowFractions"]));
+            }
+            set {
+                this["ShowFractions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hover")]
+        public string TraitDisplay {
+            get {
+                return ((string)(this["TraitDisplay"]));
+            }
+            set {
+                this["TraitDisplay"] = value;
             }
         }
     }

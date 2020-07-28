@@ -35,7 +35,8 @@ namespace TemTacO
         TemTem TemRight = new TemTem();
         bool TemTypeDef = false;
         bool AlwaysShowDefense = Properties.Settings.Default.AlwaysShowDefense;
-        bool AlwaysShowTrait = Properties.Settings.Default.AlwaysShowTrait;
+        bool ShowFractions = Properties.Settings.Default.ShowFractions;
+        string TraitDisplay = Properties.Settings.Default.TraitDisplay;
 
         CultureInfo enEn = new CultureInfo("en-EN");
 
@@ -45,6 +46,11 @@ namespace TemTacO
         public MainWindow()
         {
             InitializeComponent();
+
+            // Load Settings
+            checkboxDefense.IsChecked = AlwaysShowDefense;
+            checkboxFractions.IsChecked = ShowFractions;
+            ComboBoxTraits.SelectedValue = TraitDisplay;          
 
             try
             {
@@ -436,18 +442,6 @@ namespace TemTacO
             AlwaysShowDefense = false;
         }
 
-        private void CheckboxTrait_Checked(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.AlwaysShowTrait = true;
-            Properties.Settings.Default.Save();
-        }
-
-        private void CheckboxTrait_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.AlwaysShowTrait = false;
-            Properties.Settings.Default.Save();
-        }
-
         private bool HandleResolution()
         {
             double dWidth = -1;
@@ -459,7 +453,6 @@ namespace TemTacO
                 dHeight = SystemParameters.PrimaryScreenHeight;
                 log.Info($"Found resolution: {dWidth}x{dHeight}");
                 //Check if Resolution is supported
-                //var TemSettings = TemResolutions.Where(x => x.Height.Equals(dHeight) && x.Width.Equals(dWidth));
                 if (SupportedResolutions.FindIndex(x => x.Equals($"{dWidth}x{dHeight}")) != -1)
                 {
                     Properties.Settings.Default.Resolution = $"{dWidth}x{dHeight}";
@@ -470,7 +463,7 @@ namespace TemTacO
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show($"{dWidth}x{dHeight} is currently not supported.\nFor more information visit 'www.temporium.gg'", "TemTacO");
+                    System.Windows.MessageBox.Show($"{dWidth}x{dHeight} is currently not supported. \nVisit https://github.com/BLinssen/TemTacO/issues to request a resolution.'", "TemTacO");
                     return false;
                 }
             }
@@ -497,6 +490,27 @@ namespace TemTacO
                 log.Info($"Changed resolution: {resolution[0]}x{resolution[1]}");
                 ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{resolution[0]}x{resolution[1]}"));                
                 Properties.Settings.Default.Resolution = $"{resolution[0]}x{resolution[1]}";
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void CheckboxFractions_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.ShowFractions = false;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CheckboxFractions_Checked(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.ShowFractions = true;
+            Properties.Settings.Default.Save();
+        }
+
+        private void ComboBoxTraits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBoxTraits.SelectedValue != null && ComboBoxTraits.SelectedValue.ToString() != "")
+            {
+                Properties.Settings.Default.TraitDisplay = ComboBoxTraits.SelectedValue.ToString();
                 Properties.Settings.Default.Save();
             }
         }
