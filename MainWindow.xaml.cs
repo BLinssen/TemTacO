@@ -114,11 +114,11 @@ namespace TemTacO
         {
             String str = typeIn.ToString();
             str = str.TrimStart(new Char[] { '0' });
-            if (str.Equals(".5"))
+            if (str.Equals(".5") || str.Equals(",5"))
             {
                 str = "½";
             }
-            else if (str.Equals(".25"))
+            else if (str.Equals(".25") || str.Equals(",25"))
             {
                 str = "¼";
             }
