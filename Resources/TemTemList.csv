@@ -11,7 +11,7 @@ No,Temtem,Type1,Type2,Trait1,Neutral,Fire,Water,Nature,Electric,Earth,Mental,Win
 10,Swali,Nature,None,Shared Pain:Mithridatism,0,2,0.5,0.5,0.5,0.5,0,0,0,0,0,2
 11,Loali,Nature,Wind,Botanist:Toxic Farewell,0,2,0.5,0.5,0,0.25,0,0.5,0,0,0,2
 12,Tateru,Neutral,None,Soft Touch:Resilient,0,0,0,0,0,0,2,0,0,0,0,0
-13,Gharunder,Digital,Electric,Unknown,0,0,0.5,0.5,0.5,2,0,0,0,0,2,0
+13,Gharunder,Digital,Electric,Unknown,0,0,0.5,0.5,0.5,2,0,0,0,0,2,0.5
 14,Mosu,Melee,None,Unknown,0,0,0,0,0,0,2,0,2,0.5,0,0
 15,Magmut,Melee,Fire,Unknown,0,0.5,2,0.5,0,2,2,0,2,0.5,0,0
 16,Paharo,Wind,None,Hover:Friendship,0,0,0,0,2,0.5,0,0.5,0,0,0,0
