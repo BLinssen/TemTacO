@@ -214,8 +214,7 @@ namespace TemTacO
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
                 {
-                    SetTrait(TemLeft);
-                    TemTraitsGridUp.Visibility = Visibility.Visible;
+                    SetTrait(TemLeft, TemTraitsGridUp, Visibility.Visible);
                 }
             }
             else
@@ -324,13 +323,11 @@ namespace TemTacO
                     // Switch to Upper Grid if it's not in use
                     if (TemTraitsGridUp.Visibility == Visibility.Collapsed)
                     {
-                        SetTrait(TemRight);
-                        TemTraitsGridUp.Visibility = Visibility.Visible;
+                        SetTrait(TemRight, TemTraitsGridUp, Visibility.Visible);
                     }
                     else
                     {
-                        SetTraitAlt(TemRight);
-                        TemTraitsGridDown.Visibility = Visibility.Visible;
+                        SetTraitAlt(TemRight, TemTraitsGridDown, Visibility.Visible);
                     }                 
                 }
             }
@@ -410,38 +407,47 @@ namespace TemTacO
             }
         }
 
-        private void SetTrait(TemTem Tem)
+        private void SetTrait(TemTem Tem, Grid grid, Visibility visible)
         {
             string[] Traits = Tem.Trait.ToString().Split(':');
-            if(Traits.Length > 0)
+            if (Traits[0].Equals("Unknown"))
+            {
+                return;
+            }
+            if (Traits.Length > 0)
             {
                 //Set Trait Name
                 EnemyTemTraitName1.Content = Traits[0];
-                //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[0]));
-                TemTrait TemTrait = TemTraits[index];
-                EnemyTemTraitDescription1.Text = TemTrait.Description;
+                    //Set Trait Description
+                    int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
+                    TemTrait TemTrait = TemTraits[index];
+                    EnemyTemTraitDescription1.Text = TemTrait.Description;
             }
             if(Traits.Length > 1)
             {
                 //Set Trait Name
                 EnemyTemTraitName2.Content = Traits[1];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[1]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[1].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2.Text = TemTrait.Description;
             }
+            grid.Visibility = visible;
         }
 
-        private void SetTraitAlt(TemTem Tem)
+        private void SetTraitAlt(TemTem Tem, Grid grid, Visibility visible)
         {
             string[] Traits = Tem.Trait.ToString().Split(':');
+            if (Traits[0].Equals("Unknown"))
+            {
+                return;
+            }
             if (Traits.Length > 0)
             {
                 //Set Trait Name
                 EnemyTemTraitName1Perma.Content = Traits[0];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[0]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription1Perma.Text = TemTrait.Description;
             }
@@ -450,10 +456,11 @@ namespace TemTacO
                 //Set Trait Name
                 EnemyTemTraitName2Perma.Content = Traits[1];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[1]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[1].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2Perma.Text = TemTrait.Description;
             }
+            grid.Visibility = visible;
         }
 
         private List<TemTem> PopulateList()
@@ -499,7 +506,7 @@ namespace TemTacO
 
         private TemTem GetMatchup(string TemName)
         {
-            return TemTems.Find(x => x.Name.Contains(TemName));
+            return TemTems.Find(x => x.Name.ToLower().Contains(TemName.ToLower()));
         }
 
         private bool TemValid(string foundText)
@@ -516,8 +523,7 @@ namespace TemTacO
         {
             if (TemLeft.Trait != null && EnemyTemLeft.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
-                SetTrait(TemLeft);
-                TemTraitsGridUp.Visibility = Visibility.Visible;
+                SetTrait(TemLeft, TemTraitsGridUp, Visibility.Visible);
             }
         }
 
@@ -525,8 +531,7 @@ namespace TemTacO
         {
             if (TemRight.Trait != null && EnemyTemRight.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
-                SetTrait(TemRight);
-                TemTraitsGridUp.Visibility = Visibility.Visible;
+                SetTrait(TemRight, TemTraitsGridUp, Visibility.Visible);
             }
         }
 
