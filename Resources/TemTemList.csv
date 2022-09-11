@@ -126,7 +126,7 @@ No,Temtem,Type1,Type2,Trait1,Neutral,Fire,Water,Nature,Electric,Earth,Mental,Win
 125,Pupoise,Digital,Nature,Unknown,0,2,0,0.5,0,0.5,0,0,2,0,0,0
 126,Loatle,Digital,Mental,Unknown,0.5,0,2,0,4,0,0,0,4,0.5,2,0.5
 127,Kalazu,Water,None,Mithridatism:Hydrologist,0,0.5,0.5,2,2,0.5,0,0,0,0,0,2
-128,Kalabyss,Water,Toxic,Botanophobia:Loneliness,0,0.5,0.25,2,2,0.5,0,2,0,0,0,0
+128,Kalabyss,Water,Toxic,Botanophobia:Loneliness,0,0.5,0.25,0,2,0.5,0,2,0,0,0,0
 129,Adoroboros,Toxic,Mental,Synergy Master:Toxic Skin,0.5,0,0.5,0.5,2,0,0,2,2,0.5,2,0.5
 130,Tuwai,Wind,None,Spoilsport:Resilient,0,0,0,0,2,0.5,0,0.5,0,0,0,0
 131,Tukai,Wind,Water,Spreader:Hydrologist,0,0.5,0.5,2,4,0.25,0,0.5,0,0,0,2
