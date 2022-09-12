@@ -127,30 +127,51 @@ namespace TemTacO
 
         private void ScanScreenTem(bool save)
         {
-            //Init
-            Bitmap memoryImageLeft;
-            memoryImageLeft = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
-            System.Drawing.Size sL = new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
-
+            //Scan for full left
+            Bitmap memoryImageLeft = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
             Graphics memoryGraphicsLeft = Graphics.FromImage(memoryImageLeft);
-
             //Scan TemTem Left
-            memoryGraphicsLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0, sL);            
-
+            memoryGraphicsLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
             //Tesseract OCR
             memoryImageLeft = OCR.Whitify(memoryImageLeft);
             string temOCR = OCR.Tesseract(memoryImageLeft);
-            //log.Info($"FoundOCR-L:{temOCR}");
             temOCR = temOCR.Split(' ')[0];
+            temOCR = Regex.Replace(temOCR, @"[^\w]*", String.Empty);
             temOCR = new String(temOCR.Where(Char.IsLetter).ToArray());
-            int temOCRindex = TemTems.FindIndex(x => x.Name.Contains(temOCR));
-
+            temOCR = temOCR.ToLower();
+            int temOCRindex = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCR));
             //Set left Tem label text
             if (!OCR.ScanForMenu() || (EnemyTemLeft.Content.ToString() != temOCR && temOCR != "" && temOCRindex > 0))
             {
                 if (TemValid(temOCR))
                 {
-                    EnemyTemLeft.Content = temOCR;
+                    EnemyTemLeft.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCR);
+                }
+            }
+
+            //If left scan couldn't find anything, try scanning only for half width
+            if (temOCRindex <= 0)
+            {
+                //Scan for half left
+                Bitmap memoryImageHalfLeft = new Bitmap(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH);
+                Graphics memoryGraphicsHalfLeft = Graphics.FromImage(memoryImageHalfLeft);
+                //Scan TemTem Left
+                memoryGraphicsHalfLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
+                //Tesseract OCR
+                memoryImageHalfLeft = OCR.Whitify(memoryImageHalfLeft);
+                string temOCRHalf = OCR.Tesseract(memoryImageHalfLeft);
+                temOCRHalf = temOCRHalf.Split(' ')[0];
+                temOCRHalf = Regex.Replace(temOCRHalf, @"[^\w]*", String.Empty);
+                temOCRHalf = new String(temOCRHalf.Where(Char.IsLetter).ToArray());
+                temOCRHalf = temOCRHalf.ToLower();
+                int temOCRindexHalf = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCRHalf));
+                //Set left Tem label text
+                if (!OCR.ScanForMenu() || (EnemyTemLeft.Content.ToString() != temOCRHalf && temOCRHalf != "" && temOCRindexHalf > 0))
+                {
+                    if (TemValid(temOCRHalf))
+                    {
+                        EnemyTemLeft.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCRHalf);
+                    }
                 }
             }
 
@@ -193,8 +214,7 @@ namespace TemTacO
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
                 {
-                    SetTrait(TemLeft);
-                    TemTraitsGridUp.Visibility = Visibility.Visible;
+                    SetTrait(TemLeft, TemTraitsGridUp, Visibility.Visible);
                 }
             }
             else
@@ -209,36 +229,57 @@ namespace TemTacO
                 }
             }
 
-            //Init
-            Bitmap memoryImageRight;
-            memoryImageRight = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
-            System.Drawing.Size sR = new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
-
+            //Scan for full right
+            Bitmap memoryImageRight = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
             Graphics memoryGraphicsRight = Graphics.FromImage(memoryImageRight);
-
             //Scan TemTem Right
-            memoryGraphicsRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0, sR);
-
+            memoryGraphicsRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
             //Tesseract OCR
             memoryImageRight = OCR.Whitify(memoryImageRight);
-            //string fileName = string.Format(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-            //    @"\TemTem\" +
-            //    DateTime.Now.ToString("(dd_MMMM_hh_mm_ss_tt)") + "R.png");
-            //memoryImageRight.Save(fileName);
             temOCR = OCR.Tesseract(memoryImageRight);
             //log.Info($"FoundOCR-R:{temOCR}");
             temOCR = temOCR.Split(' ')[0];
+            temOCR = Regex.Replace(temOCR, @"[^\w]*", String.Empty);
             temOCR = new String(temOCR.Where(Char.IsLetter).ToArray());
-            temOCRindex = TemTems.FindIndex(x => x.Name.Contains(temOCR));
+            temOCR = temOCR.ToLower();
+            temOCRindex = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCR));
 
-            //Set left Tem label text
+            //Set right Tem label text
             if (!OCR.ScanForMenu() || (EnemyTemRight.Content.ToString() != temOCR && temOCR != "" && temOCRindex > 0))
             {
                 if (TemValid(temOCR))
                 {
-                    EnemyTemRight.Content = temOCR;
-                }                
+                    EnemyTemRight.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCR);
+                }
             };
+
+            //If right scan couldn't find anything, try scanning only for half width
+            if (temOCRindex <= 0)
+            {
+                //Scan for half right
+                Bitmap memoryImageHalfRight = new Bitmap(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH);
+                Graphics memoryGraphicsHalfRight = Graphics.FromImage(memoryImageHalfRight);
+                //Scan TemTem Right
+                memoryGraphicsHalfRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
+                //Tesseract OCR
+                memoryImageHalfRight = OCR.Whitify(memoryImageHalfRight);
+                string temOCRHalf = OCR.Tesseract(memoryImageHalfRight);
+                //log.Info($"FoundOCR-R:{temOCR}");
+                temOCRHalf = temOCRHalf.Split(' ')[0];
+                temOCRHalf = Regex.Replace(temOCRHalf, @"[^\w]*", String.Empty);
+                temOCRHalf = new String(temOCRHalf.Where(Char.IsLetter).ToArray());
+                temOCRHalf = temOCRHalf.ToLower();
+                int temOCRindexHalf = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCRHalf));
+
+                //Set right Tem label text
+                if (!OCR.ScanForMenu() || (EnemyTemRight.Content.ToString() != temOCRHalf && temOCRHalf != "" && temOCRindexHalf > 0))
+                {
+                    if (TemValid(temOCRHalf))
+                    {
+                        EnemyTemRight.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCRHalf);
+                    }
+                }
+            }
 
             //If we found a Tem update the table
             if (EnemyTemRight.Content.ToString() != "")
@@ -282,13 +323,11 @@ namespace TemTacO
                     // Switch to Upper Grid if it's not in use
                     if (TemTraitsGridUp.Visibility == Visibility.Collapsed)
                     {
-                        SetTrait(TemRight);
-                        TemTraitsGridUp.Visibility = Visibility.Visible;
+                        SetTrait(TemRight, TemTraitsGridUp, Visibility.Visible);
                     }
                     else
                     {
-                        SetTraitAlt(TemRight);
-                        TemTraitsGridDown.Visibility = Visibility.Visible;
+                        SetTraitAlt(TemRight, TemTraitsGridDown, Visibility.Visible);
                     }                 
                 }
             }
@@ -368,38 +407,47 @@ namespace TemTacO
             }
         }
 
-        private void SetTrait(TemTem Tem)
+        private void SetTrait(TemTem Tem, Grid grid, Visibility visible)
         {
             string[] Traits = Tem.Trait.ToString().Split(':');
-            if(Traits.Length > 0)
+            if (Traits[0].Equals("Unknown"))
+            {
+                return;
+            }
+            if (Traits.Length > 0)
             {
                 //Set Trait Name
                 EnemyTemTraitName1.Content = Traits[0];
-                //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[0]));
-                TemTrait TemTrait = TemTraits[index];
-                EnemyTemTraitDescription1.Text = TemTrait.Description;
+                    //Set Trait Description
+                    int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
+                    TemTrait TemTrait = TemTraits[index];
+                    EnemyTemTraitDescription1.Text = TemTrait.Description;
             }
             if(Traits.Length > 1)
             {
                 //Set Trait Name
                 EnemyTemTraitName2.Content = Traits[1];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[1]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[1].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2.Text = TemTrait.Description;
             }
+            grid.Visibility = visible;
         }
 
-        private void SetTraitAlt(TemTem Tem)
+        private void SetTraitAlt(TemTem Tem, Grid grid, Visibility visible)
         {
             string[] Traits = Tem.Trait.ToString().Split(':');
+            if (Traits[0].Equals("Unknown"))
+            {
+                return;
+            }
             if (Traits.Length > 0)
             {
                 //Set Trait Name
                 EnemyTemTraitName1Perma.Content = Traits[0];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[0]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription1Perma.Text = TemTrait.Description;
             }
@@ -408,10 +456,11 @@ namespace TemTacO
                 //Set Trait Name
                 EnemyTemTraitName2Perma.Content = Traits[1];
                 //Set Trait Description
-                int index = TemTraits.FindIndex(x => x.Name.Contains(Traits[1]));
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[1].ToLower()));
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2Perma.Text = TemTrait.Description;
             }
+            grid.Visibility = visible;
         }
 
         private List<TemTem> PopulateList()
@@ -457,12 +506,14 @@ namespace TemTacO
 
         private TemTem GetMatchup(string TemName)
         {
-            return TemTems.Find(x => x.Name.Contains(TemName));
+            return TemTems.Find(x => x.Name.ToLower().Contains(TemName.ToLower()));
         }
 
         private bool TemValid(string foundText)
         {
-            int index = TemTems.FindIndex(x => x.Name.Contains(foundText));
+            if (foundText.Length <= 2)
+                return false;
+            int index = TemTems.FindIndex(x => x.Name.ToLower().Contains(foundText.ToLower()));
             if (index != -1)
                 return true;
             return false;
@@ -472,8 +523,7 @@ namespace TemTacO
         {
             if (TemLeft.Trait != null && EnemyTemLeft.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
-                SetTrait(TemLeft);
-                TemTraitsGridUp.Visibility = Visibility.Visible;
+                SetTrait(TemLeft, TemTraitsGridUp, Visibility.Visible);
             }
         }
 
@@ -481,8 +531,7 @@ namespace TemTacO
         {
             if (TemRight.Trait != null && EnemyTemRight.Content.ToString() != string.Empty && TraitDisplay == "Hover")
             {
-                SetTrait(TemRight);
-                TemTraitsGridUp.Visibility = Visibility.Visible;
+                SetTrait(TemRight, TemTraitsGridUp, Visibility.Visible);
             }
         }
 
