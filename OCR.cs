@@ -89,7 +89,7 @@ namespace TemTacO
                                     } while (iter.Next(PageIteratorLevel.Block, PageIteratorLevel.Para));
                                 } while (iter.Next(PageIteratorLevel.Block));
                             }
-                            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text); ;
+                            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
                         }
                     }
                 }
@@ -104,7 +104,7 @@ namespace TemTacO
         {
             Bitmap memoryImage;
             memoryImage = new Bitmap(454, 3);
-            System.Drawing.Size s = new System.Drawing.Size(454, 3);
+            Size s = new Size(454, 3);
             Graphics memoryGraphics = Graphics.FromImage(memoryImage);
 
             //Scan for menu
@@ -114,7 +114,7 @@ namespace TemTacO
             {
                 for (int x = 0; x < memoryImage.Width; x++)
                 {
-                    System.Drawing.Color pixel = memoryImage.GetPixel(x, y);
+                    Color pixel = memoryImage.GetPixel(x, y);
                     if (pixel.R != 30 || pixel.G != 31 || pixel.B != 30 || pixel.A != 255)
                     {
                         return false;
