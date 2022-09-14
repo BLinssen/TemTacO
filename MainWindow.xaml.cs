@@ -115,10 +115,10 @@ namespace TemTacO
         {
             var dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += (sender, e) => { ProgressTimer_Tick(type); };
-            //We run every 14 milliseconds so the progress bar can run at up to 144hz
-            //It would need to run more frequently for higher hertz, but 144 should be more than enough
-            //Running every 14 milliseconds may be too taxing on the system though, so this might need to be made less frequent
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 14);
+            //We run every 15 milliseconds so the progress bar can run at up to 60hz
+            //It would need to run more frequently for higher hertz, but 60 should be more than enough
+            //Running every 15 milliseconds may be too taxing on the system though, so this might need to be made less frequent
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 15);
             dispatcherTimer.Start();
             Log.Info("Started " + type + " progress bar cycle");
         }
