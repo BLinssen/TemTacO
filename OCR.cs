@@ -5,8 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Tesseract;
 
 namespace TemTacO
@@ -27,18 +25,19 @@ namespace TemTacO
         public static OCR FromCsv(string csvLine, CultureInfo cultureInfo)
         {
             string[] values = csvLine.Split(',');
-            OCR ocrValues = new OCR();
-            ocrValues.Width = Convert.ToInt32(values[0], cultureInfo);
-            ocrValues.Height = Convert.ToInt32(values[1], cultureInfo);
-            ocrValues.SnipW = Convert.ToInt32(values[2], cultureInfo);
-            ocrValues.SnipH = Convert.ToInt32(values[3], cultureInfo);
-            ocrValues.TemLeftX = Convert.ToInt32(values[4], cultureInfo);
-            ocrValues.TemLeftY = Convert.ToInt32(values[5], cultureInfo);
-            ocrValues.TemRightX = Convert.ToInt32(values[6], cultureInfo);
-            ocrValues.TemRightY = Convert.ToInt32(values[7], cultureInfo);
-            ocrValues.AspectRatio = Convert.ToString(values[8], cultureInfo);
-            ocrValues.Resolution = Convert.ToString(values[9], cultureInfo);
-            return ocrValues;
+            return new OCR()
+            {
+                Width = Convert.ToInt32(values[0], cultureInfo),
+                Height = Convert.ToInt32(values[1], cultureInfo),
+                SnipW = Convert.ToInt32(values[2], cultureInfo),
+                SnipH = Convert.ToInt32(values[3], cultureInfo),
+                TemLeftX = Convert.ToInt32(values[4], cultureInfo),
+                TemLeftY = Convert.ToInt32(values[5], cultureInfo),
+                TemRightX = Convert.ToInt32(values[6], cultureInfo),
+                TemRightY = Convert.ToInt32(values[7], cultureInfo),
+                AspectRatio = Convert.ToString(values[8], cultureInfo),
+                Resolution = Convert.ToString(values[9], cultureInfo)
+            };
         }
 
         public static string Tesseract(Bitmap image)
@@ -132,7 +131,7 @@ namespace TemTacO
             {
                 for (int x = 0; x < image.Width; x++)
                 {
-                    System.Drawing.Color pixel = image.GetPixel(x, y);
+                    Color pixel = image.GetPixel(x, y);
                     if (pixel.R < 220 || pixel.G < 220 || pixel.B < 220 || pixel.A != 255)
                     {
                         image.SetPixel(x, y, white);
@@ -160,8 +159,8 @@ namespace TemTacO
                 {
                     for (int x = 0; x < image.Width; x++)
                     {
-                        System.Drawing.Color pixel1 = image.GetPixel(x, y);
-                        System.Drawing.Color pixel2 = datasetImage.GetPixel(x, y);
+                        Color pixel1 = image.GetPixel(x, y);
+                        Color pixel2 = datasetImage.GetPixel(x, y);
 
                         //If there is a white pixel in the same position on both images add a point of similarity
                         if ((pixel1.R == 255 && pixel1.G == 255 && pixel1.B == 255 && pixel1.A == 255) && (pixel2.R == 255 && pixel2.G == 255 && pixel2.B == 255 && pixel2.A == 255))

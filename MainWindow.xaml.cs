@@ -26,18 +26,18 @@ namespace TemTacO
     public partial class MainWindow : Window
     {
         //Global Variables
-        List<TemTem> TemTems = new List<TemTem>();
-        List<TemTrait> TemTraits = new List<TemTrait>();
-        List<OCR> TemResolutions = new List<OCR>();
-        List<string> SupportedResolutions = new List<string>();
+        readonly List<TemTem> TemTems = new List<TemTem>();
+        readonly List<TemTrait> TemTraits = new List<TemTrait>();
+        readonly List<OCR> TemResolutions = new List<OCR>();
+        readonly List<string> SupportedResolutions = new List<string>();
         OCR ResolutionSettings = new OCR();
         TemTem TemLeft = new TemTem();
         TemTem TemRight = new TemTem();
         bool TemTypeDef = false;
         bool AlwaysShowDefense = Properties.Settings.Default.AlwaysShowDefense;
-        string TraitDisplay = Properties.Settings.Default.TraitDisplay;
+        readonly string TraitDisplay = Properties.Settings.Default.TraitDisplay;
 
-        CultureInfo enEn = new CultureInfo("en-EN");
+        readonly CultureInfo enEn = new CultureInfo("en-EN");
 
         //Logging
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -83,8 +83,8 @@ namespace TemTacO
         private void StartScreenChecker()
         {
             //DispatcherTimer setup
-            DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             //Run the function every 3 seconds.
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
@@ -92,13 +92,13 @@ namespace TemTacO
 
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             //AVOID UAC Crash
             try
             {
                 //Scan Screen for Tems
-                ScanScreenTem(false);
+                ScanScreenTem();
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace TemTacO
             return str;
         }
 
-        private void ScanScreenTem(bool save)
+        private void ScanScreenTem()
         {
             //Scan for full left
             Bitmap memoryImageLeft = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
