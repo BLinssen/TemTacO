@@ -146,7 +146,7 @@ namespace TemTacO
             return image;
         }
 
-        public static async Task<string> ImageCorrelation(Bitmap image)
+        public static Task<string> ImageCorrelation(Bitmap image)
         {
             List<float> similaritiesWhite = new List<float>();
             List<float> similaritiesBlack = new List<float>();
@@ -179,17 +179,17 @@ namespace TemTacO
             }
             //If there are less than 30 pixels equal we assume there is no Tem found.
             if (similaritiesWhite.Max() < 30 || similaritiesBlack.Max() < 30)
-                return "";
+                return Task.FromResult("");
             else
             {
                 int WhiteIndex = similaritiesWhite.IndexOf(similaritiesWhite.Max());
                 int BlackIndex = similaritiesBlack.IndexOf(similaritiesBlack.Max());
                 if (WhiteIndex == BlackIndex)
                 {
-                    return Path.GetFileNameWithoutExtension(FilePaths[WhiteIndex]);
+                    return Task.FromResult(Path.GetFileNameWithoutExtension(FilePaths[WhiteIndex]));
                 }
                 else
-                    return "";
+                    return Task.FromResult("");
             }
         }
     }
