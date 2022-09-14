@@ -190,5 +190,3 @@ git_stats/*
 StyleCop.Cache
 bin
 obj
-log4net.dll
-log4net.xml

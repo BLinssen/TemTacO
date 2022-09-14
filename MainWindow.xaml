@@ -59,16 +59,18 @@
     </Window.Resources>
     <Grid Background="#00000000" Margin="0">
         <Grid x:Name="TemTacOverlay" Panel.ZIndex="-1" Margin="-510,0,0,0">
-            <Label x:Name="EnemyTemLeft" Content="" HorizontalAlignment="Left" Margin="0,47,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="138" MouseEnter="EnemyTemLeft_MouseEnter" MouseLeave="EnemyTemLeft_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik">
+            <Label x:Name="EnemyTemLeft" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" FontSize="20" Template="{DynamicResource LabelOutlineControl}" Foreground="White" HorizontalContentAlignment="Left" Width="138" MouseEnter="EnemyTemLeft_MouseEnter" MouseLeave="EnemyTemLeft_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik" Content="">
                 <Label.Effect>
                     <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="4"/>
                 </Label.Effect>
             </Label>
-            <Label x:Name="EnemyTemRight" Content="" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="138" HorizontalContentAlignment="Left" MouseEnter="EnemyTemRight_MouseEnter" MouseLeave="EnemyTemRight_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik" >
+            <ProgressBar x:Name="LeftProgressBar" HorizontalAlignment="Left" Height="7" Margin="6,78,0,0" VerticalAlignment="Top" Width="60" Background="#FF232323" BorderBrush="#FF292929" Foreground="#FF0666B0" Value="100"/>
+            <Label x:Name="EnemyTemRight" HorizontalAlignment="Left" Margin="0,80,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White" BorderBrush="Black" BorderThickness="0" Width="138" HorizontalContentAlignment="Left" MouseEnter="EnemyTemRight_MouseEnter" MouseLeave="EnemyTemRight_MouseLeave" FontFamily="/TemTacO;component/fonts/#Rubik" Content="" >
                 <Label.Effect>
                     <DropShadowEffect BlurRadius="4" Direction="0" ShadowDepth="0"/>
                 </Label.Effect>
             </Label>
+            <ProgressBar x:Name="RightProgressBar" HorizontalAlignment="Left" Height="7" Margin="6,106,0,0" VerticalAlignment="Top" Width="60" Background="#FF232323" BorderBrush="#FF292929" Foreground="#FF0666B0" Value="100"/>
             <Grid x:Name="TypeMatchup" HorizontalAlignment="Left" Height="30" Margin="124,21,0,0" VerticalAlignment="Top" Width="360" RenderTransformOrigin="0.5,0.5">
                 <Image x:Name="TypeMatchupNeutral" HorizontalAlignment="Left" Height="30" Margin="13,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Neutral.png"/>
                 <Image x:Name="TypeMatchupFire" HorizontalAlignment="Left" Height="30" Margin="43,0,0,0" VerticalAlignment="Top" Width="30" Source="Resources/Fire.png"/>
@@ -371,7 +373,7 @@
                 </Button.Background>
             </Button>
         </Grid>
-        <Button x:Name="BtnMenu" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="30" Click="BtnMenu_Click" Height="30" BorderBrush="{x:Null}" Template="{DynamicResource CustomButtonControlTemplate}" Panel.ZIndex="20">
+        <Button x:Name="BtnMenu" Content="" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="30" Click="BtnMenu_Click" Height="30" BorderBrush="{x:Null}" Template="{DynamicResource CustomButtonControlTemplate}" Panel.ZIndex="20">
             <Button.Background>
                 <ImageBrush ImageSource="Resources/Menu_Icon.png"/>
             </Button.Background>
