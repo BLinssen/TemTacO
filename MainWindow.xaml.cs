@@ -132,7 +132,7 @@ namespace TemTacO
                     case Type.Left:
                         //Decrement value by 0.2 if it's visible
                         if (LeftProgressBar.IsVisible)
-                            LeftProgressBar.Value -= 0.25;
+                            LeftProgressBar.Value -= 0.175;
 
                         //If the progress bar has reached 0, hide it and reset the text
                         if (LeftProgressBar.Value <= 0)
@@ -150,7 +150,7 @@ namespace TemTacO
                     case Type.Right:
                         //Decrement value by 0.2 if it's visible
                         if (RightProgressBar.IsVisible)
-                            RightProgressBar.Value -= 0.25;
+                            RightProgressBar.Value -= 0.175;
 
                         //If the progress bar has reached 0, hide it and reset the text
                         if (RightProgressBar.Value <= 0)
