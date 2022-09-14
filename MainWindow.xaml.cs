@@ -17,6 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using Tesseract;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace TemTacO
 {
@@ -40,7 +41,8 @@ namespace TemTacO
         readonly CultureInfo enEn = new CultureInfo("en-EN");
 
         //Logging
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog Log =
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public MainWindow()
         {
@@ -48,7 +50,7 @@ namespace TemTacO
 
             // Load Settings
             checkboxDefense.IsChecked = AlwaysShowDefense;
-            ComboBoxTraits.SelectedValue = TraitDisplay;          
+            ComboBoxTraits.SelectedValue = TraitDisplay;
 
             try
             {
@@ -60,16 +62,18 @@ namespace TemTacO
             }
             catch (Exception ex)
             {
-                log.Error(ex.Message);
-                log.Error(ex.StackTrace);
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
                 Close();
-            }            
-            
+            }
+
             //Resolution settings
             if (HandleResolution())
             {
-                //Start the screen checking function if the resolution is supported.
+                //Start the screen checking and progress bars if the resolution is supported.
                 StartScreenChecker();
+                StartProgressBar(Type.Left);
+                StartProgressBar(Type.Right);
             }
 
             //Init Type Defense
@@ -82,33 +86,96 @@ namespace TemTacO
 
         private void StartScreenChecker()
         {
-            //DispatcherTimer setup
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            //Run the function every 3 seconds.
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
-            log.Info("Started scanning");
-
+            //We run this on a seperate thread to prevent the UI thread being locked up while it executes
+            new System.Threading.Timer(ScanScreenTimer(), new AutoResetEvent(false), 1000, 1000);
+            Log.Info("Started scanning");
         }
 
-        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        private TimerCallback ScanScreenTimer()
         {
-            //AVOID UAC Crash
+            //Avoid user account control crash
             try
             {
-                //Scan Screen for Tems
-                ScanScreenTem();
+                ScanScreenForTemtems();
             }
             catch (Exception ex)
             {
-                log.Error(ex.Message);
-                log.Error(ex.StackTrace);
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
             }
 
             //Force the CommandManager to raise the RequerySuggested event
             CommandManager.InvalidateRequerySuggested();
-        }        
+            return null;
+        }
+
+        private enum Type
+        {
+            Left,
+            Right
+        }
+
+        private void StartProgressBar(Type type)
+        {
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += (sender, e) => { ProgressTimer_Tick(type); };
+            //We run every 14 milliseconds so the progress bar can run at up to 144hz
+            //It would need to run more frequently for higher hertz, but 144 should be more than enough
+            //Running every 14 milliseconds may be too taxing on the system though, so this might need to be made less frequent
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 14);
+            dispatcherTimer.Start();
+            Log.Info("Started " + type + " progress bar cycle");
+        }
+
+        private void ProgressTimer_Tick(Type type)
+        {
+            try
+            {
+                switch (type)
+                {
+                    case Type.Left:
+                        //Decrement value by 0.2 if it's visible
+                        if (LeftProgressBar.IsVisible)
+                            LeftProgressBar.Value -= 0.25;
+
+                        //If the progress bar has reached 0, hide it and reset the text
+                        if (LeftProgressBar.Value <= 0)
+                        {
+                            LeftProgressBar.Visibility = Visibility.Collapsed;
+                            EnemyTemLeft.Content = "";
+                        }
+                        //Otherwise, make sure it's visible
+                        else if (LeftProgressBar.Value > 0 && !LeftProgressBar.IsVisible)
+                            LeftProgressBar.Visibility = Visibility.Visible;
+
+                        break;
+                    case Type.Right:
+                        //Decrement value by 0.2 if it's visible
+                        if (RightProgressBar.IsVisible)
+                            RightProgressBar.Value -= 0.25;
+
+                        //If the progress bar has reached 0, hide it and reset the text
+                        if (RightProgressBar.Value <= 0)
+                        {
+                            RightProgressBar.Visibility = Visibility.Collapsed;
+                            EnemyTemRight.Content = "";
+                        }
+                        //Otherwise, make sure it's visible
+                        else if (RightProgressBar.Value > 0 && !RightProgressBar.IsVisible)
+                            RightProgressBar.Visibility = Visibility.Visible;
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
+            }
+
+            //Force the CommandManager to raise the RequerySuggested event
+            CommandManager.InvalidateRequerySuggested();
+        }
 
         private String TypeString(float typeIn)
         {
@@ -122,16 +189,18 @@ namespace TemTacO
             {
                 str = "¼";
             }
+
             return str;
         }
 
-        private void ScanScreenTem()
+        private void ScanScreenForTemtems()
         {
             //Scan for full left
             Bitmap memoryImageLeft = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
             Graphics memoryGraphicsLeft = Graphics.FromImage(memoryImageLeft);
             //Scan TemTem Left
-            memoryGraphicsLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
+            memoryGraphicsLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0,
+                new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
             //Tesseract OCR
             memoryImageLeft = OCR.Whitify(memoryImageLeft);
             string temOCR = OCR.Tesseract(memoryImageLeft);
@@ -146,6 +215,8 @@ namespace TemTacO
                 if (TemValid(temOCR))
                 {
                     EnemyTemLeft.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCR);
+                    LeftProgressBar.Value = 100;
+                    LeftProgressBar.Visibility = Visibility.Visible;
                 }
             }
 
@@ -156,7 +227,8 @@ namespace TemTacO
                 Bitmap memoryImageHalfLeft = new Bitmap(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH);
                 Graphics memoryGraphicsHalfLeft = Graphics.FromImage(memoryImageHalfLeft);
                 //Scan TemTem Left
-                memoryGraphicsHalfLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
+                memoryGraphicsHalfLeft.CopyFromScreen(ResolutionSettings.TemLeftX, ResolutionSettings.TemLeftY, 0, 0,
+                    new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
                 //Tesseract OCR
                 memoryImageHalfLeft = OCR.Whitify(memoryImageHalfLeft);
                 string temOCRHalf = OCR.Tesseract(memoryImageHalfLeft);
@@ -166,29 +238,38 @@ namespace TemTacO
                 temOCRHalf = temOCRHalf.ToLower();
                 int temOCRindexHalf = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCRHalf));
                 //Set left Tem label text
-                if (!OCR.ScanForMenu() || (EnemyTemLeft.Content.ToString() != temOCRHalf && temOCRHalf != "" && temOCRindexHalf > 0))
+                if (!OCR.ScanForMenu() || (EnemyTemLeft.Content.ToString() != temOCRHalf && temOCRHalf != "" &&
+                                           temOCRindexHalf > 0))
                 {
                     if (TemValid(temOCRHalf))
                     {
                         EnemyTemLeft.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCRHalf);
+                        LeftProgressBar.Value = 100;
+                        LeftProgressBar.Visibility = Visibility.Visible;
                     }
                 }
             }
 
             //If we found a tem update the table
-            if (EnemyTemLeft.Content.ToString() != "")
+            if (EnemyTemLeft.Content != null && EnemyTemLeft.Content.ToString() != "")
             {
                 //Get Tem Details
                 TemLeft = GetMatchup(EnemyTemLeft.Content.ToString());
 
                 if (!TemLeft.Type2.Equals("None"))
                 {
-                    EnemyTemLeftType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type2 + ".png", UriKind.Relative));
-                    EnemyTemLeftType2.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png", UriKind.Relative));
+                    EnemyTemLeftType.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type2 + ".png",
+                            UriKind.Relative));
+                    EnemyTemLeftType2.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png",
+                            UriKind.Relative));
                 }
                 else
                 {
-                    EnemyTemLeftType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png", UriKind.Relative));
+                    EnemyTemLeftType.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemLeft.Type1 + ".png",
+                            UriKind.Relative));
                     EnemyTemLeftType2.Source = null;
                 }
 
@@ -210,6 +291,7 @@ namespace TemTacO
                 AddColor(LeftMatchup.Children);
                 LeftMatchup.Visibility = Visibility.Visible;
                 LeftType.Visibility = Visibility.Visible;
+                LeftProgressBar.Visibility = Visibility.Visible;
 
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
@@ -221,6 +303,7 @@ namespace TemTacO
             {
                 LeftMatchup.Visibility = Visibility.Collapsed;
                 LeftType.Visibility = Visibility.Collapsed;
+                LeftProgressBar.Visibility = Visibility.Collapsed;
 
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
@@ -233,11 +316,12 @@ namespace TemTacO
             Bitmap memoryImageRight = new Bitmap(ResolutionSettings.SnipW, ResolutionSettings.SnipH);
             Graphics memoryGraphicsRight = Graphics.FromImage(memoryImageRight);
             //Scan TemTem Right
-            memoryGraphicsRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
+            memoryGraphicsRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0,
+                new System.Drawing.Size(ResolutionSettings.SnipW, ResolutionSettings.SnipH));
             //Tesseract OCR
             memoryImageRight = OCR.Whitify(memoryImageRight);
             temOCR = OCR.Tesseract(memoryImageRight);
-            //log.Info($"FoundOCR-R:{temOCR}");
+            //Log.Info($"FoundOCR-R:{temOCR}");
             temOCR = temOCR.Split(' ')[0];
             temOCR = Regex.Replace(temOCR, @"[^\w]*", String.Empty);
             temOCR = new String(temOCR.Where(Char.IsLetter).ToArray());
@@ -250,8 +334,12 @@ namespace TemTacO
                 if (TemValid(temOCR))
                 {
                     EnemyTemRight.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCR);
+                    RightProgressBar.Value = 100;
+                    RightProgressBar.Visibility = Visibility.Visible;
                 }
-            };
+            }
+
+            ;
 
             //If right scan couldn't find anything, try scanning only for half width
             if (temOCRindex <= 0)
@@ -260,11 +348,12 @@ namespace TemTacO
                 Bitmap memoryImageHalfRight = new Bitmap(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH);
                 Graphics memoryGraphicsHalfRight = Graphics.FromImage(memoryImageHalfRight);
                 //Scan TemTem Right
-                memoryGraphicsHalfRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0, new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
+                memoryGraphicsHalfRight.CopyFromScreen(ResolutionSettings.TemRightX, ResolutionSettings.TemRightY, 0, 0,
+                    new System.Drawing.Size(ResolutionSettings.SnipW / 2, ResolutionSettings.SnipH));
                 //Tesseract OCR
                 memoryImageHalfRight = OCR.Whitify(memoryImageHalfRight);
                 string temOCRHalf = OCR.Tesseract(memoryImageHalfRight);
-                //log.Info($"FoundOCR-R:{temOCR}");
+                //Log.Info($"FoundOCR-R:{temOCR}");
                 temOCRHalf = temOCRHalf.Split(' ')[0];
                 temOCRHalf = Regex.Replace(temOCRHalf, @"[^\w]*", String.Empty);
                 temOCRHalf = new String(temOCRHalf.Where(Char.IsLetter).ToArray());
@@ -272,29 +361,38 @@ namespace TemTacO
                 int temOCRindexHalf = TemTems.FindIndex(x => x.Name.ToLower().Contains(temOCRHalf));
 
                 //Set right Tem label text
-                if (!OCR.ScanForMenu() || (EnemyTemRight.Content.ToString() != temOCRHalf && temOCRHalf != "" && temOCRindexHalf > 0))
+                if (!OCR.ScanForMenu() || (EnemyTemRight.Content.ToString() != temOCRHalf && temOCRHalf != "" &&
+                                           temOCRindexHalf > 0))
                 {
                     if (TemValid(temOCRHalf))
                     {
                         EnemyTemRight.Content = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(temOCRHalf);
+                        RightProgressBar.Value = 100;
+                        RightProgressBar.Visibility = Visibility.Visible;
                     }
                 }
             }
 
             //If we found a Tem update the table
-            if (EnemyTemRight.Content.ToString() != "")
+            if (EnemyTemRight.Content != null && EnemyTemRight.Content.ToString() != "")
             {
                 //Get Tem Details
                 TemRight = GetMatchup(EnemyTemRight.Content.ToString());
 
                 if (!TemRight.Type2.Equals("None"))
                 {
-                    EnemyTemRightType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type2 + ".png", UriKind.Relative));
-                    EnemyTemRightType2.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png", UriKind.Relative));
+                    EnemyTemRightType.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type2 + ".png",
+                            UriKind.Relative));
+                    EnemyTemRightType2.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png",
+                            UriKind.Relative));
                 }
                 else
                 {
-                    EnemyTemRightType.Source = new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png", UriKind.Relative));
+                    EnemyTemRightType.Source =
+                        new System.Windows.Media.Imaging.BitmapImage(new Uri("Resources/" + TemRight.Type1 + ".png",
+                            UriKind.Relative));
                     EnemyTemRightType2.Source = null;
                 }
 
@@ -316,6 +414,7 @@ namespace TemTacO
                 AddColor(RightMatchup.Children);
                 RightMatchup.Visibility = Visibility.Visible;
                 RightType.Visibility = Visibility.Visible;
+                RightProgressBar.Visibility = Visibility.Visible;
 
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
@@ -328,13 +427,14 @@ namespace TemTacO
                     else
                     {
                         SetTraitAlt(TemRight, TemTraitsGridDown, Visibility.Visible);
-                    }                 
+                    }
                 }
             }
             else
             {
                 RightMatchup.Visibility = Visibility.Collapsed;
                 RightType.Visibility = Visibility.Collapsed;
+                RightProgressBar.Visibility = Visibility.Collapsed;
 
                 // Trait Visibility
                 if (Properties.Settings.Default.TraitDisplay == "Always")
@@ -343,19 +443,22 @@ namespace TemTacO
                 }
             }
 
-            if (!TemTypeDef && (EnemyTemLeft.Content.ToString() != "" || EnemyTemRight.Content.ToString() != "") && !AlwaysShowDefense)
-            {                
+            if (!TemTypeDef &&
+                ((EnemyTemLeft.Content != null && EnemyTemLeft.Content.ToString() != "") ||
+                 (EnemyTemRight.Content != null && EnemyTemRight.Content.ToString() != "")) && !AlwaysShowDefense)
+            {
                 TemTacOverlay.BeginStoryboard((Storyboard)this.Resources["TypeDefenseShow"]);
-                TemTypeDef = true;               
+                TemTypeDef = true;
             }
-            else if (TemTypeDef && (EnemyTemLeft.Content.ToString() == "" && EnemyTemRight.Content.ToString() == "") && !AlwaysShowDefense)
+            else if (TemTypeDef && (EnemyTemLeft.Content.ToString() == "" && EnemyTemRight.Content.ToString() == "") &&
+                     !AlwaysShowDefense)
             {
                 TemTacOverlay.BeginStoryboard((Storyboard)this.Resources["TypeDefenseHide"]);
                 TemTypeDef = false;
-            }            
+            }
         }
 
-        private void AddColor(System.Windows.Controls.UIElementCollection collection)
+        private void AddColor(UIElementCollection collection)
         {
             foreach (System.Windows.Controls.Label label in collection)
             {
@@ -365,10 +468,12 @@ namespace TemTacO
                 if (str.Equals("½"))
                 {
                     value = 0.5;
-                } else if (str.Equals("¼"))
+                }
+                else if (str.Equals("¼"))
                 {
                     value = 0.25;
-                } else if (!str.Equals(string.Empty))
+                }
+                else if (!str.Equals(string.Empty))
                 {
                     value = double.Parse(str);
                 }
@@ -380,29 +485,40 @@ namespace TemTacO
                     switch (value)
                     {
                         case 0.25:
-                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 241, 138, 51));
+                            label.Background =
+                                new System.Windows.Media.SolidColorBrush(
+                                    System.Windows.Media.Color.FromArgb(100, 241, 138, 51));
                             break;
 
                         case 0.5:
-                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 237, 221, 58));
+                            label.Background =
+                                new System.Windows.Media.SolidColorBrush(
+                                    System.Windows.Media.Color.FromArgb(100, 237, 221, 58));
                             break;
 
                         case 2:
-                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 109, 237, 51));
+                            label.Background =
+                                new System.Windows.Media.SolidColorBrush(
+                                    System.Windows.Media.Color.FromArgb(100, 109, 237, 51));
                             break;
 
                         case 4:
-                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(100, 77, 176, 51));
+                            label.Background =
+                                new System.Windows.Media.SolidColorBrush(
+                                    System.Windows.Media.Color.FromArgb(100, 77, 176, 51));
                             break;
 
                         default:
-                            label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
+                            label.Background =
+                                new System.Windows.Media.SolidColorBrush(
+                                    System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
                             break;
                     }
                 }
                 else
                 {
-                    label.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
+                    label.Background =
+                        new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(0, 0, 0, 0));
                 }
             }
         }
@@ -414,16 +530,18 @@ namespace TemTacO
             {
                 return;
             }
+
             if (Traits.Length > 0)
             {
                 //Set Trait Name
                 EnemyTemTraitName1.Content = Traits[0];
-                    //Set Trait Description
-                    int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
-                    TemTrait TemTrait = TemTraits[index];
-                    EnemyTemTraitDescription1.Text = TemTrait.Description;
+                //Set Trait Description
+                int index = TemTraits.FindIndex(x => x.Name.ToLower().Contains(Traits[0].ToLower()));
+                TemTrait TemTrait = TemTraits[index];
+                EnemyTemTraitDescription1.Text = TemTrait.Description;
             }
-            if(Traits.Length > 1)
+
+            if (Traits.Length > 1)
             {
                 //Set Trait Name
                 EnemyTemTraitName2.Content = Traits[1];
@@ -432,6 +550,7 @@ namespace TemTacO
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2.Text = TemTrait.Description;
             }
+
             grid.Visibility = visible;
         }
 
@@ -442,6 +561,7 @@ namespace TemTacO
             {
                 return;
             }
+
             if (Traits.Length > 0)
             {
                 //Set Trait Name
@@ -451,6 +571,7 @@ namespace TemTacO
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription1Perma.Text = TemTrait.Description;
             }
+
             if (Traits.Length > 1)
             {
                 //Set Trait Name
@@ -460,47 +581,49 @@ namespace TemTacO
                 TemTrait TemTrait = TemTraits[index];
                 EnemyTemTraitDescription2Perma.Text = TemTrait.Description;
             }
+
             grid.Visibility = visible;
         }
 
         private List<TemTem> PopulateList()
         {
-            log.Info("Reading TemList.csv");
+            Log.Info("Reading TemList.csv");
             List<TemTem> temTemps = File.ReadAllLines("Resources\\TemTemList.csv")
-                                           .Skip(1)
-                                           .Select(v => TemTem.FromCsv(v, enEn))
-                                           .ToList();
+                .Skip(1)
+                .Select(v => TemTem.FromCsv(v, enEn))
+                .ToList();
             return temTemps;
         }
 
         private List<TemTrait> PopulateTraits()
         {
-            log.Info("Reading TemTraits.csv");
+            Log.Info("Reading TemTraits.csv");
             List<TemTrait> tempTemTraits = File.ReadAllLines("Resources\\TemTraits.csv")
-                                           .Skip(1)
-                                           .Select(v => TemTrait.FromCsv(v, enEn))
-                                           .ToList();
+                .Skip(1)
+                .Select(v => TemTrait.FromCsv(v, enEn))
+                .ToList();
             return tempTemTraits;
         }
 
         private List<OCR> PopulateResolutions()
         {
-            log.Info("Reading TemResolutions.csv");
+            Log.Info("Reading TemResolutions.csv");
             List<OCR> tempTemResolutions = File.ReadAllLines("Resources\\TemResolutions.csv")
-                                           .Skip(1)
-                                           .Select(v => OCR.FromCsv(v, enEn))
-                                           .ToList();
+                .Skip(1)
+                .Select(v => OCR.FromCsv(v, enEn))
+                .ToList();
             return tempTemResolutions;
         }
 
         private List<string> PopulateSupportedResolutions()
         {
-            log.Info("Reading Supported Resolutions");
+            Log.Info("Reading Supported Resolutions");
             List<string> tempSupportedResolutions = new List<string>();
-            foreach(OCR ocr in TemResolutions)
+            foreach (OCR ocr in TemResolutions)
             {
                 tempSupportedResolutions.Add($"{ocr.Width}x{ocr.Height}");
             }
+
             return tempSupportedResolutions;
         }
 
@@ -550,7 +673,7 @@ namespace TemTacO
             if (TemSettings.Visibility == Visibility.Collapsed)
                 TemSettings.Visibility = Visibility.Visible;
             else
-                TemSettings.Visibility = Visibility.Collapsed;        
+                TemSettings.Visibility = Visibility.Collapsed;
         }
 
         private void CheckboxDefense_Checked(object sender, RoutedEventArgs e)
@@ -578,7 +701,7 @@ namespace TemTacO
                 //Get Resolution
                 dWidth = SystemParameters.PrimaryScreenWidth;
                 dHeight = SystemParameters.PrimaryScreenHeight;
-                log.Info($"Found resolution: {dWidth}x{dHeight}");
+                Log.Info($"Found resolution: {dWidth}x{dHeight}");
                 //Check if Resolution is supported
                 if (SupportedResolutions.FindIndex(x => x.Equals($"{dWidth}x{dHeight}")) != -1)
                 {
@@ -590,18 +713,20 @@ namespace TemTacO
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show($"{dWidth}x{dHeight} is currently not supported. \nVisit https://github.com/BLinssen/TemTacO/issues to request a resolution.'", "TemTacO");
+                    System.Windows.MessageBox.Show(
+                        $"{dWidth}x{dHeight} is currently not supported. \nVisit https://github.com/BLinssen/TemTacO/issues to request a resolution.'",
+                        "TemTacO");
                     return false;
                 }
             }
 
-            string[] resolution = Properties.Settings.Default.Resolution.Split('x'); 
+            string[] resolution = Properties.Settings.Default.Resolution.Split('x');
             dWidth = Convert.ToInt32(resolution[0]);
             dHeight = Convert.ToInt32(resolution[1]);
-            log.Info($"Settings resolution: {dWidth}x{dHeight}");
+            Log.Info($"Settings resolution: {dWidth}x{dHeight}");
             ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{dWidth}x{dHeight}"));
             ComboBoxResolution.SelectedValue = $"{dWidth}x{dHeight}";
-            return true;        
+            return true;
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)
@@ -611,11 +736,11 @@ namespace TemTacO
 
         private void ComboBoxResolution_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(ComboBoxResolution.SelectedValue != null && ComboBoxResolution.SelectedValue.ToString() != string.Empty)
+            if (ComboBoxResolution.SelectedValue != null && ComboBoxResolution.SelectedValue.ToString() != string.Empty)
             {
                 string[] resolution = ComboBoxResolution.SelectedValue.ToString().Split('x');
-                log.Info($"Changed resolution: {resolution[0]}x{resolution[1]}");
-                ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{resolution[0]}x{resolution[1]}"));                
+                Log.Info($"Changed resolution: {resolution[0]}x{resolution[1]}");
+                ResolutionSettings = TemResolutions.Find(x => x.Resolution.Equals($"{resolution[0]}x{resolution[1]}"));
                 Properties.Settings.Default.Resolution = $"{resolution[0]}x{resolution[1]}";
                 Properties.Settings.Default.Save();
             }
